@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">counselApp</string>
+    <string name="login">로그인</string>
+    <string name="putEmail">이메일 주소 입력</string>
+    <string name="putPw">비밀번호 입력</string>
+    <string name="checkPw">비밀번호 재입력</string>
+    <string name="lostIDPW">아이디/비밀번호찾기</string>
+    <string name="signIn">회원가입</string>
+    <string name="normalUser">일반 사용자</string>
+    <string name="expert">전문 상담가</string>
+    <string name="main">메인화면</string>
+    <string name="searchExp">상담사찾기</string>
+    <string name="getCounsel">상담받기</string>
+    <string name="putNickName">닉네임 입력</string>
+</resources>

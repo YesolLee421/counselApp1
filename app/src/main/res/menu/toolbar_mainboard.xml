@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@drawable/menu"
+        android:id="toolbar_menu"
+        android:title="Menu"
+        android:visible="true"
+    />
+    <item
+            android:icon="@drawable/imfine_white"
+            android:id="toolbar_logo"
+            android:title="Logo"
+            android:visible="true"
+    />
+    <item
+            android:icon="@drawable/bell"
+            android:id="toolbar_alarm"
+            android:title="Alarm"
+            android:visible="true"/>
+
+</menu>

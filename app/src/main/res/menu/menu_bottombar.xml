@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="bottonbar_mainB"
+        android:icon="@drawable/home"
+        android:title="@string/main"/>
+    <item
+            android:id="bottonbar_searchExp"
+            android:icon="@drawable/search"
+            android:title="@string/searchExp"/>
+    <item
+            android:id="bottonbar_getCousel"
+            android:icon="@drawable/heart_full_red"
+            android:title="@string/getCounsel"/>
+
+</menu>
