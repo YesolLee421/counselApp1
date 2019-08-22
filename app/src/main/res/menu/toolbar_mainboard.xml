@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:icon="@drawable/menu"
-        android:id="toolbar_menu"
+        android:id="@+id/toolbar_menu"
         android:title="Menu"
         android:visible="true"
     />
     <item
             android:icon="@drawable/imfine_white"
-            android:id="toolbar_logo"
+            android:id="@+id/toolbar_logo"
             android:title="Logo"
             android:visible="true"
     />
     <item
             android:icon="@drawable/bell"
-            android:id="toolbar_alarm"
+            android:id="@+id/toolbar_alarm"
             android:title="Alarm"
             android:visible="true"/>
 

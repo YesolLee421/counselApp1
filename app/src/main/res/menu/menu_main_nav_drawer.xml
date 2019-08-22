@@ -13,7 +13,7 @@
             android:title="설정"
             android:id="@+id/menu_main_nav_setting"/>
     <item
-            android:icon="@drawable/logOut_white"
+            android:icon="@drawable/logout_white"
             android:title="로그아웃"
             android:id="@+id/menu_main_nav_logOut"/>
 
