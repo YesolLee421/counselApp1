@@ -1,16 +1,19 @@
 package com.example.counselapp
 
-import android.os.Bundle
-import android.os.PersistableBundle
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LogInActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-
+        btn_logIn.setOnClickListener {
+            val loginIntent = Intent(this, MainBoardActivity::class.java)
+            startActivity(loginIntent)
+        }
     }
-
-
 }

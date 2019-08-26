@@ -12,4 +12,10 @@
     <string name="searchExp">상담사찾기</string>
     <string name="getCounsel">상담받기</string>
     <string name="putNickName">닉네임 입력</string>
+
+    <string-array name="spinner_search_expert">
+        <item>선택</item>
+        <item>이름</item>
+        <item>전문분야</item>
+    </string-array>
 </resources>

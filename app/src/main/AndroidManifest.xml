@@ -9,16 +9,22 @@
             android:roundIcon="@drawable/imfine_white"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".MainBoardActivity">
+        </activity>
+        <activity android:name=".LogInActivity">
+        </activity>
+        <activity android:name=".ProfileExpertActivity">
+        </activity>
+        <activity android:name=".SearchExpertActivity">
+        </activity>
+        <activity android:name=".CheckPostActivity">
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
-
-        <activity android:name=".LogInActivity">
-
         </activity>
     </application>
 

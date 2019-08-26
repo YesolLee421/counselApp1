@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                        xmlns:app="http://schemas.android.com/apk/res-auto" android:orientation="vertical"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent">
+
+
+    <LinearLayout android:background="@android:color/background_light" android:layout_width="match_parent" android:layout_height="match_parent"
+                  android:orientation="vertical" >
+        <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/main"
+                android:theme="?attr/actionBarTheme"
+                android:minHeight="?attr/actionBarSize" android:id="@+id/toolbar_checkPost">
+
+            <LinearLayout android:background="@android:color/transparent" android:layout_margin="8dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                <ImageView
+                        android:background="@android:color/transparent"
+                        android:id="@+id/ic_toolbar_menu"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/menu"/>
+                <ImageView
+                        android:id="@+id/ic_toolbar_logo"
+                        android:layout_width="317dp" android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/imfine_white"
+                        android:layout_gravity="center_horizontal"/>
+                <ImageView
+                        android:background="@android:color/transparent"
+                        android:id="@+id/ic_toolbar_alarm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/bell"/>
+            </LinearLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textOn="전체" android:textOff="전체" />
+            <ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textOn="대인관계" android:textOff="대인관계"/>
+            <ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textOn="직장" android:textOff="직장"/>
+            <ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textOn="취업" android:textOff="취업"/>
+            <ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textOn="학업" android:textOff="학업"/>
+        </LinearLayout>
+
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="8dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                          android:orientation="vertical">
+                <TextView
+                        android:id="@+id/text_checkPost_title"
+                        android:textSize="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="4dp"
+                        android:text="사소한 일로 친구랑 싸웠어요. 어떻게 사과하면 될까요?"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BY 솔이  |   23:34:44"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="조회 132  |  격려 35  |  댓글 3"/>
+
+                <TextView
+                        android:layout_marginVertical="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="많이 품고 있는 이상! 이것이야말로 무한한 가치를 가진 것이다 사람은 크고 작고 간에 이상이 있음으로써 용감하고
+
+찬미를 듣는다 그것은 웅대한 관현악이며 미묘한 교향악이다 뼈 끝에 스며들어 가는 열락의 소리다이것은 피어나기 전인 유소년에게서 구하지 못할 바이며 시들어 가는 노년에게서 구하지 못할 바이며 오직 우리 청춘에서만 구할 수 있는 것이다 청춘은 인생의 황금시대다 우리는 이 황금시대의 가치를 충분히 발휘하기 위하여
+
+얼마나 쓸쓸하랴? 얼음에 싸인 만물은 얼음이 있을 뿐이다 그들에게 생명을 불어 넣는 것은 따뜻한 봄바람이다 풀밭에 속잎나고 가지에 싹이 트고 꽃 피고 새 우는 봄날의 천지는 얼마나 기쁘며"/>
+
+                <ToggleButton
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textOn="격려 34"
+                        android:textOff="격려 35"/>
+
+                <TabHost android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                                  android:orientation="vertical">
+                        <TabWidget android:id="@android:id/tabs" android:layout_width="match_parent" android:layout_height="wrap_content"></TabWidget>
+                        <FrameLayout android:id="@android:id/tabcontent" android:layout_width="match_parent"
+                                     android:layout_height="match_parent">
+                            <TextView android:id="@+id/text_checkPost_tab_content1" android:text="전문가 댓글 레이아웃" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                            <TextView android:id="@+id/text_checkPost_tab_content2" android:text="일반 사용자 댓글 레이아웃" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                        </FrameLayout>
+
+
+                    </LinearLayout>
+
+                </TabHost>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <Button android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="댓글 더보기"/>
+                    <Button android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="댓글쓰기" android:backgroundTint="@color/main"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:src="@drawable/add_white"
+
+                android:layout_margin="8dp"/>
+
+        <android.support.design.widget.BottomNavigationView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/calmblue"
+                app:menu="@menu/menu_bottombar"
+                app:itemIconTint="@android:color/background_light"
+                app:itemTextColor="@android:color/background_light">
+
+        </android.support.design.widget.BottomNavigationView>
+
+
+
+
+    </LinearLayout>
+
+    <android.support.design.widget.NavigationView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:menu="@menu/menu_main_nav_drawer"
+            android:layout_gravity="start"
+    />
+
+</android.support.v4.widget.DrawerLayout>
+
+
