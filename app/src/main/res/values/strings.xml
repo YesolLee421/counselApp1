@@ -18,4 +18,18 @@
         <item>이름</item>
         <item>전문분야</item>
     </string-array>
+
+    <string-array name="spinner_write_post_category">
+        <item>카테고리 선택</item>
+        <item>대인관계</item>
+        <item>연인</item>
+        <item>친구</item>
+        <item>가족</item>
+        <item>직장</item>
+        <item>성</item>
+        <item>금전</item>
+        <item>중독</item>
+        <item>감정조절</item>
+        <item>기타</item>
+    </string-array>
 </resources>

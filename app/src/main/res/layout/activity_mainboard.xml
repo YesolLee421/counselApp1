@@ -3,7 +3,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto" android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-            android:background="@android:color/background_light">
+            android:background="@android:color/background_light" android:id="@+id/drawerL_mainB">
 
 
     <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
@@ -48,12 +48,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
-            <ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textOn="전체" android:textOff="전체" />
-            <ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textOn="대인관계" android:textOff="대인관계"/>
-            <ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textOn="직장" android:textOff="직장"/>
-            <ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textOn="취업" android:textOff="취업"/>
-            <ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textOn="학업" android:textOff="학업"/>
+            <ToggleButton android:backgroundTint="@color/wood" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textOn="전체" android:textOff="전체" />
+            <ToggleButton android:backgroundTint="@color/wood" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textOn="대인관계" android:textOff="대인관계"/>
+            <ToggleButton android:backgroundTint="@color/wood" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textOn="직장" android:textOff="직장"/>
+            <ToggleButton android:backgroundTint="@color/wood" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textOn="취업" android:textOff="취업"/>
+            <ToggleButton android:backgroundTint="@color/wood" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textOn="학업" android:textOff="학업"/>
         </LinearLayout>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="제목, 키워드 검색->검색창이 나을 듯"/>
 
 
         <ScrollView
@@ -68,6 +69,52 @@
                         android:layout_height="wrap_content"
                         android:text="스크롤뷰 내용"
                         android:textColor="@android:color/black"/>
+
+                <android.support.v7.widget.CardView android:id="@+id/card_mainB_1" android:layout_width="match_parent"
+                                                    app:cardElevation="8dp" android:layout_height="wrap_content" app:contentPadding="8dp" app:cardUseCompatPadding="true">
+                    <LinearLayout android:padding="8dp" android:layout_width="match_parent"
+                                  android:layout_height="wrap_content" android:orientation="vertical">
+                        <TextView
+                                android:textSize="17dp"
+                                android:textColor="@android:color/black"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="사소한 일로 친구랑 싸웠어요. 어떻게 사과하면 좋을까요?"/>
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="BY 솔이"/>
+                        <TextView
+                                android:gravity="end"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="#친구#대인관계#감정조절"/>
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView android:id="@+id/card_mainB_2" android:layout_width="match_parent"
+                                                    app:cardElevation="8dp" android:layout_height="wrap_content" app:contentPadding="8dp" app:cardUseCompatPadding="true">
+                    <LinearLayout android:padding="8dp" android:layout_width="match_parent"
+                                  android:layout_height="wrap_content" android:orientation="vertical">
+                        <TextView
+                                android:textSize="17dp"
+                                android:textColor="@android:color/black"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="사소한 일로 친구랑 싸웠어요. 어떻게 사과하면 좋을까요?"/>
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="BY 솔이"/>
+                        <TextView
+                                android:gravity="end"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="#친구#대인관계#감정조절"/>
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
             </LinearLayout>
         </ScrollView>
 
@@ -79,6 +126,7 @@
                 android:layout_margin="8dp"/>
 
         <android.support.design.widget.BottomNavigationView
+                android:id="@+id/bottom_nav_mainB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/calmblue"
@@ -94,6 +142,7 @@
     </LinearLayout>
 
     <android.support.design.widget.NavigationView
+            android:id="@+id/navigation_mainB"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:menu="@menu/menu_main_nav_drawer"

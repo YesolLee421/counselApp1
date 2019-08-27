@@ -11,15 +11,17 @@ android:background="@color/main">
             android:background="@android:color/transparent"
              android:id="@+id/imageView2"/>
 
-    <LinearLayout android:layout_margin="16dp" android:background="@android:color/background_light" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+    <LinearLayout android:layout_margin="16dp" android:background="@color/skyGrey" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
         <TextView
                 android:textSize="30dp"
                 android:gravity="center_horizontal"
                 android:layout_margin="8dp"
                 android:text="@string/login"
+                android:textColor="@color/wood"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/textView"/>
         <EditText
+                android:textColorHint="@color/wood"
                 android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -28,6 +30,7 @@ android:background="@color/main">
                 android:ems="10"
                 android:id="@+id/editText"/>
         <EditText
+                android:textColorHint="@color/wood"
                 android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -39,6 +42,7 @@ android:background="@color/main">
                 android:textSize="17dp"
                 android:layout_margin="8dp"
                 android:text="@string/login"
+                android:background="@color/wood"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/btn_logIn"/>
 
@@ -65,7 +69,7 @@ android:background="@color/main">
                 android:text="@string/signIn"
 
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/textView3" android:layout_weight="1"
+                android:layout_height="wrap_content" android:id="@+id/text_logIn_signIn" android:layout_weight="1"
                 />
     </LinearLayout>
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/bottom_bar_writePost_camera"
+            android:icon="@drawable/picture_white"
+            android:title="사진 추가"/>
+    <item
+            android:id="@+id/bottom_bar_writePost_gallery"
+            android:icon="@drawable/tag"
+            android:title="태그 추가"/>
+    <item
+            android:id="@+id/bottom_bar_writePost_save"
+            android:icon="@drawable/save_white"
+            android:title="저장"/>
+
+</menu>

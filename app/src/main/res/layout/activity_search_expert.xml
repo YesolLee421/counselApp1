@@ -3,6 +3,7 @@
                                         xmlns:app="http://schemas.android.com/apk/res-auto" android:orientation="vertical"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
+                                        android:id="@+id/drawerL_searchExp"
                                         >
 
 
@@ -13,7 +14,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/main"
                 android:theme="?attr/actionBarTheme"
-                android:minHeight="?attr/actionBarSize" android:id="@+id/toolbar_mainB">
+                android:minHeight="?attr/actionBarSize" android:id="@+id/toolbar_searchExp">
 
             <LinearLayout android:background="@android:color/transparent" android:layout_margin="8dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
                 <ImageView
@@ -47,7 +48,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-            <Spinner android:layout_width="wrap_content" android:layout_height="wrap_content" android:entries="@array/spinner_search_expert"></Spinner>
+            <Spinner  android:layout_width="wrap_content" android:layout_height="wrap_content" android:entries="@array/spinner_search_expert"></Spinner>
             <EditText android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1"/>
             <Button android:text="검색" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
@@ -65,18 +66,85 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="상담사 목록 부분"
-                        android:textColor="@android:color/black"/>
+                        />
+
+                <android.support.v7.widget.CardView android:layout_width="match_parent" android:id="@+id/card_searchExp_1"
+                                                    app:cardElevation="8dp" android:layout_height="wrap_content" app:contentPadding="8dp" app:cardUseCompatPadding="true">
+                    <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
+                                                                 android:layout_height="wrap_content">
+                        <ImageView android:id="@+id/image_searchExp_card_picture" android:layout_width="70dp"
+                                   android:layout_height="70dp" android:src="@drawable/homer1"
+                                   app:layout_constraintTop_toTopOf="parent"
+                                   app:layout_constraintStart_toStartOf="parent"
+
+                                   app:layout_constraintEnd_toStartOf="@+id/text_searchExp_card_name"/>
+                        <TextView android:id="@+id/text_searchExp_card_name" android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:text="호머 심슨 상담사" android:textColor="@android:color/black"
+                                  android:textSize="17dp"
+                                  app:layout_constraintStart_toEndOf="@+id/image_searchExp_card_picture"
+                                  app:layout_constraintTop_toTopOf="parent"
+                                  app:layout_constraintEnd_toStartOf="@+id/image_searchExp_card_heart"
+
+                                  app:layout_constraintBottom_toTopOf="@+id/text_searchExp_card_about"/>
+                        <ImageView android:layout_width="30dp" android:layout_height="30dp"
+                                   android:src="@drawable/heart_empty_red"
+                                   app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                                   android:id="@+id/image_searchExp_card_heart"
+                                   app:layout_constraintStart_toEndOf="@+id/text_searchExp_card_name"
+                                   />
+
+                        <TextView android:id="@+id/text_searchExp_card_about" android:layout_width="match_parent" android:layout_height="wrap_content"
+                                  android:text="꽃이 없으면 쓸쓸한 인간에 남는 것은 영락과 부패 뿐이다 낙원을 장식하는 천자만홍이 어디 있으며 인생을 풍부하게 하는 온갖 과실이 어디 있으랴? "
+                                  app:layout_constraintStart_toStartOf="parent"
+                                  app:layout_constraintTop_toBottomOf="@+id/image_searchExp_card_picture"/>
+                        <TextView android:gravity="end" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="동작정신건강센터 소속"
+                        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/text_searchExp_card_about" />
+
+                    </android.support.constraint.ConstraintLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView android:layout_width="match_parent" android:id="@+id/card_searchExp_2"
+                                                    app:cardElevation="8dp" android:layout_height="wrap_content" app:contentPadding="8dp" app:cardUseCompatPadding="true">
+                    <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
+                                                                 android:layout_height="wrap_content">
+                        <ImageView android:id="@+id/image_searchExp_card_picture1" android:layout_width="70dp"
+                                   android:layout_height="70dp" android:src="@drawable/homer1"
+                                   app:layout_constraintTop_toTopOf="parent"
+                                   app:layout_constraintStart_toStartOf="parent"
+
+                                   app:layout_constraintEnd_toStartOf="@+id/text_searchExp_card_name1"/>
+                        <TextView android:id="@+id/text_searchExp_card_name1" android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:text="호머 심슨 상담사" android:textColor="@android:color/black"
+                                  android:textSize="17sp"
+                                  app:layout_constraintStart_toEndOf="@+id/image_searchExp_card_picture1"
+                                  app:layout_constraintTop_toTopOf="parent"
+                                  app:layout_constraintEnd_toStartOf="@+id/image_searchExp_card_heart1"
+
+
+                                  app:layout_constraintBottom_toTopOf="@+id/text_searchExp_card_about1"/>
+                        <ImageView android:layout_width="30dp" android:layout_height="30dp"
+                                   android:src="@drawable/heart_empty_red"
+                                   app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                                   android:id="@+id/image_searchExp_card_heart1"
+                                   app:layout_constraintStart_toEndOf="@+id/text_searchExp_card_name1"
+                                   />
+
+                        <TextView android:id="@+id/text_searchExp_card_about1" android:layout_width="match_parent" android:layout_height="wrap_content"
+                                  android:text="꽃이 없으면 쓸쓸한 인간에 남는 것은 영락과 부패 뿐이다 낙원을 장식하는 천자만홍이 어디 있으며 인생을 풍부하게 하는 온갖 과실이 어디 있으랴? "
+                                  app:layout_constraintStart_toStartOf="parent"
+                                  app:layout_constraintTop_toBottomOf="@+id/image_searchExp_card_picture1"/>
+                        <TextView android:gravity="end" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="동작정신건강센터 소속"
+                                  app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/text_searchExp_card_about1" />
+
+                    </android.support.constraint.ConstraintLayout>
+                </android.support.v7.widget.CardView>
             </LinearLayout>
         </ScrollView>
 
-        <android.support.design.widget.FloatingActionButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:src="@drawable/add_white"
-                android:layout_margin="8dp"/>
-
         <android.support.design.widget.BottomNavigationView
+                android:id="@+id/bottom_nav_searchExp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/calmblue"
@@ -92,6 +160,7 @@
     </LinearLayout>
 
     <android.support.design.widget.NavigationView
+            android:id="@+id/navigation_searchExp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:menu="@menu/menu_main_nav_drawer"

@@ -9,8 +9,9 @@
             android:layout_width="150dp" android:layout_gravity="center_horizontal"
             android:layout_height="150dp" app:srcCompat="@drawable/imfine_white" android:id="@+id/imageView2"/>
 
-    <LinearLayout android:layout_margin="16dp" android:background="@android:color/background_light" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+    <LinearLayout android:layout_margin="16dp" android:background="@color/skyGrey" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
         <TextView
+                android:textColor="@color/wood"
                 android:textSize="30dp"
                 android:gravity="center_horizontal"
                 android:layout_margin="8dp"
@@ -18,12 +19,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/textView"/>
         <EditText
+
+                android:textColorHint="@color/wood"
                 android:id="@+id/et_signIn_putNickName"
                 android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/putNickName"/>
         <EditText
+                android:textColorHint="@color/wood"
                 android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -32,6 +36,7 @@
                 android:ems="10"
                 android:id="@+id/et_signIn_putEmail"/>
         <EditText
+                android:textColorHint="@color/wood"
                 android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -40,6 +45,7 @@
                 android:ems="10"
                 android:id="@+id/et_signIn_putPw"/>
         <EditText
+                android:textColorHint="@color/wood"
                 android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -51,20 +57,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <RadioButton
+                    android:textColor="@color/wood"
                     android:text="@string/normalUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/radioButton" android:layout_weight="1"/>
             <RadioButton
+                    android:textColor="@color/wood"
                     android:text="@string/expert"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/radioButton2" android:layout_weight="1"/>
         </RadioGroup>
         <Button
+                android:backgroundTint="@color/wood"
+                android:textColor="@android:color/background_light"
                 android:textSize="17dp"
                 android:layout_margin="8dp"
                 android:text="@string/signIn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/button"/>
+                android:layout_height="wrap_content" android:id="@+id/btn_signIn"/>
 
 
     </LinearLayout>

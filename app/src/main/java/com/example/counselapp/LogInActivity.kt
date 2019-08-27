@@ -14,6 +14,13 @@ class LogInActivity : AppCompatActivity() {
         btn_logIn.setOnClickListener {
             val loginIntent = Intent(this, MainBoardActivity::class.java)
             startActivity(loginIntent)
+            finish()
+        }
+
+        text_logIn_signIn.setOnClickListener {
+            val signInIntent = Intent(this, SignInActivity::class.java)
+            startActivity(signInIntent)
+            finish()
         }
     }
 }

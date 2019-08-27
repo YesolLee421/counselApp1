@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.counselapp">
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
             android:allowBackup="true"
@@ -9,6 +10,10 @@
             android:roundIcon="@drawable/imfine_white"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".SignInActivity">
+        </activity>
+        <activity android:name=".WritePostActivity">
+        </activity>
         <activity android:name=".MainBoardActivity">
         </activity>
         <activity android:name=".LogInActivity">
