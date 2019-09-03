@@ -50,6 +50,11 @@ class SearchExpertActivity : AppCompatActivity() {
             true
         }
 
+        view_searchExp1.setOnClickListener {
+            val intent = Intent(this, ProfileExpertActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     /*

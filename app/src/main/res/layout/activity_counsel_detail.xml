@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MyPageExpActivity" android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/main"
+            android:theme="?attr/actionBarTheme"
+            android:minHeight="?attr/actionBarSize" android:id="@+id/toolbar_mainB">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="마이페이지"/>
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+    >
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                      android:orientation="vertical" android:layout_gravity="center_horizontal" android:padding="8dp">
+
+            <TextView android:paddingVertical="8dp" android:textSize="20sp" android:gravity="center" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="전화상담 4회기"/>
+
+            <TableLayout android:padding="8dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <TableRow>
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="상담사 이름"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:padding="8dp"
+                            android:textColor="@android:color/black"/>
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:maxWidth="270dp"
+                            android:layout_height="wrap_content"
+                            android:text="호머 심슨"
+                            android:padding="8dp"
+                            android:gravity="center"
+                            android:textColor="@android:color/black"/>
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="기간"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:padding="8dp"
+                            android:textColor="@android:color/black"/>
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="2019.9.3 ~ 2019.9.24"
+                            android:padding="8dp"
+                            android:gravity="center"
+                            android:textColor="@android:color/black"/>
+
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="상담 시간"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:padding="8dp"
+                            android:textColor="@android:color/black"/>
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="화요일 오후 3시"
+                            android:padding="8dp"
+                            android:gravity="center"
+                            android:textColor="@android:color/black"/>
+
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="진행상태"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:padding="8dp"
+                            android:textColor="@android:color/black"/>
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="진행 중"
+                            android:padding="8dp"
+                            android:gravity="center"
+                            android:textColor="@android:color/black"/>
+
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="회기"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:padding="8dp"
+                            android:textColor="@android:color/black"/>
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="2 / 4"
+                            android:padding="8dp"
+                            android:gravity="center"
+                            android:textColor="@android:color/black"/>
+
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="주요 고민"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:padding="8dp"
+                            android:textColor="@android:color/black"/>
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="남자친구랑 헤어진 후로 너무 힘들어요"
+                            android:padding="8dp"
+                            android:gravity="center"
+                            android:textColor="@android:color/black"/>
+
+                </TableRow>
+
+
+
+            </TableLayout>
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="채팅 상담의 경우 상담 내역보기를 클릭하면 지금까지의 채팅 상담 내용을 전부 볼 수 있습니다. 전화상담의 경우 회기별 통화 시간만 기록됩니다."/>
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button android:id="@+id/btn_myPage_edit" android:layout_margin="8dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="상담 내역 보기"/>
+
+    <android.support.design.widget.BottomNavigationView
+            android:id="@+id/bottom_nav_mainB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/calmblue"
+            app:menu="@menu/menu_bottombar"
+            app:itemIconTint="@android:color/background_light"
+            app:itemTextColor="@android:color/background_light">
+
+    </android.support.design.widget.BottomNavigationView>
+
+</LinearLayout>

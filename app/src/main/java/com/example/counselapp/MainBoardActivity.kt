@@ -54,10 +54,11 @@ class MainBoardActivity : AppCompatActivity() {
             true
         }
 
-        card_mainB_1.setOnClickListener {
+        view_mainB2.setOnClickListener {
             val intentPost = Intent(this, CheckPostActivity::class.java)
             startActivity(intentPost)
         }
+
 
     }
 

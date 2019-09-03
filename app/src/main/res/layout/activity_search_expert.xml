@@ -71,13 +71,14 @@
                 <android.support.v7.widget.CardView android:layout_width="match_parent" android:id="@+id/card_searchExp_1"
                                                     app:cardElevation="8dp" android:layout_height="wrap_content" app:contentPadding="8dp" app:cardUseCompatPadding="true">
                     <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
-                                                                 android:layout_height="wrap_content">
+                                                                 android:layout_height="wrap_content" android:id="@+id/view_searchExp1">
                         <ImageView android:id="@+id/image_searchExp_card_picture" android:layout_width="70dp"
                                    android:layout_height="70dp" android:src="@drawable/homer1"
                                    app:layout_constraintTop_toTopOf="parent"
                                    app:layout_constraintStart_toStartOf="parent"
 
-                                   app:layout_constraintEnd_toStartOf="@+id/text_searchExp_card_name"/>
+                                   app:layout_constraintEnd_toStartOf="@+id/text_searchExp_card_name"
+                                   android:layout_marginLeft="8dp" android:layout_marginStart="8dp"/>
                         <TextView android:id="@+id/text_searchExp_card_name" android:layout_width="wrap_content"
                                   android:layout_height="wrap_content"
                                   android:text="호머 심슨 상담사" android:textColor="@android:color/black"
@@ -107,7 +108,7 @@
                 <android.support.v7.widget.CardView android:layout_width="match_parent" android:id="@+id/card_searchExp_2"
                                                     app:cardElevation="8dp" android:layout_height="wrap_content" app:contentPadding="8dp" app:cardUseCompatPadding="true">
                     <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
-                                                                 android:layout_height="wrap_content">
+                                                                 android:layout_height="wrap_content" android:id="@+id/view_searchExp2">
                         <ImageView android:id="@+id/image_searchExp_card_picture1" android:layout_width="70dp"
                                    android:layout_height="70dp" android:src="@drawable/homer1"
                                    app:layout_constraintTop_toTopOf="parent"
