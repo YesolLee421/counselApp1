@@ -28,7 +28,7 @@ android:background="@color/main">
                 android:inputType="textEmailAddress"
                 android:hint="@string/putEmail"
                 android:ems="10"
-                android:id="@+id/editText"/>
+                android:id="@+id/et_login_id"/>
         <EditText
                 android:textColorHint="@color/wood"
                 android:layout_margin="8dp"
@@ -37,7 +37,7 @@ android:background="@color/main">
                 android:inputType="textPassword"
                 android:hint="@string/putPw"
                 android:ems="10"
-                android:id="@+id/editText2"/>
+                android:id="@+id/et_login_pw"/>
         <Button
                 android:textSize="17dp"
                 android:layout_margin="8dp"

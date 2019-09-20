@@ -5,13 +5,13 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.NavigationView
-import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
-import android.support.v7.widget.Toolbar
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import com.example.counselapp.CounselList.CounselManagingActivity
+import com.example.counselapp.MyPage.MyPageExpActivity
+import com.example.counselapp.Post.CheckPostActivity
+import com.example.counselapp.Post.WritePostActivity
 import kotlinx.android.synthetic.main.activity_mainboard.*
 
 class MainBoardActivity : AppCompatActivity() {
@@ -25,7 +25,14 @@ class MainBoardActivity : AppCompatActivity() {
         val drawerNav = findViewById<View>(R.id.navigation_mainB) as NavigationView
         drawerNav.setNavigationItemSelectedListener { item ->
             when(item!!.itemId){
-                R.id.menu_main_nav_myPage-> Toast.makeText(this,"마이페이지",Toast.LENGTH_SHORT).show()
+                R.id.menu_main_nav_myPage->{
+                    val intentMyPage = Intent(this, MyPageExpActivity::class.java)
+                    startActivity(intentMyPage)
+                }
+                R.id.menu_main_nav_counselList->{
+                    val intentCounselList = Intent(this, CounselManagingActivity::class.java)
+                    startActivity(intentCounselList)
+                }
                 R.id.menu_main_nav_bookmark-> Toast.makeText(this,"즐겨찾기 클릭",Toast.LENGTH_SHORT).show()
                 R.id.menu_main_nav_logOut-> Toast.makeText(this,"로그아웃 클릭",Toast.LENGTH_SHORT).show()
                 R.id.menu_main_nav_setting-> Toast.makeText(this,"설정 클릭",Toast.LENGTH_SHORT).show()
@@ -48,8 +55,10 @@ class MainBoardActivity : AppCompatActivity() {
                     val intentExp = Intent(this,SearchExpertActivity::class.java)
                     startActivity(intentExp)
                 }
-                R.id.bottonbar_getCousel->
-                    Toast.makeText(this@MainBoardActivity,"상담받기",Toast.LENGTH_SHORT).show()
+                R.id.bottonbar_getCousel-> {
+                    val intentCase = Intent(this, CounselManagingActivity::class.java)
+                    startActivity(intentCase)
+                }
             }
             true
         }
@@ -57,6 +66,11 @@ class MainBoardActivity : AppCompatActivity() {
         view_mainB2.setOnClickListener {
             val intentPost = Intent(this, CheckPostActivity::class.java)
             startActivity(intentPost)
+        }
+
+        btn_mainB_addPost.setOnClickListener {
+            val intent = Intent(this, WritePostActivity::class.java)
+            startActivity(intent)
         }
 
 

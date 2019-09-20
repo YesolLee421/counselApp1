@@ -11,31 +11,33 @@
             android:roundIcon="@drawable/imfine_white"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".ChatRoomActivity">
+        <activity android:name=".Base.BaseActivity">
         </activity>
-        <activity android:name=".CallListActivity">
+        <activity android:name=".CounselList.ChatRoomActivity">
         </activity>
-        <activity android:name=".CounselDetailActivity">
+        <activity android:name=".CounselList.CallListActivity">
         </activity>
-        <activity android:name=".MyPageEditActivity">
+        <activity android:name=".CounselList.CounselDetailActivity">
         </activity>
-        <activity android:name=".CounselManagingActivity">
+        <activity android:name=".MyPage.MyPageEditActivity">
         </activity>
-        <activity android:name=".MyPageExpActivity">
+        <activity android:name=".CounselList.CounselManagingActivity">
+        </activity>
+        <activity android:name=".MyPage.MyPageExpActivity">
         </activity>
         <activity android:name=".SignInActivity">
         </activity>
-        <activity android:name=".WritePostActivity">
+        <activity android:name=".Post.WritePostActivity">
         </activity>
         <activity android:name=".MainBoardActivity">
         </activity>
         <activity android:name=".LogInActivity">
         </activity>
-        <activity android:name=".ProfileExpertActivity">
+        <activity android:name=".ExpInfo.ProfileExpertActivity">
         </activity>
         <activity android:name=".SearchExpertActivity">
         </activity>
-        <activity android:name=".CheckPostActivity">
+        <activity android:name=".Post.CheckPostActivity">
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>

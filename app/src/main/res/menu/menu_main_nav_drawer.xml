@@ -5,6 +5,10 @@
         android:title="마이페이지"
         android:id="@+id/menu_main_nav_myPage"/>
     <item
+        android:icon="@drawable/heart_full_red"
+        android:title="상담내역"
+        android:id="@+id/menu_main_nav_counselList"/>
+    <item
             android:icon="@drawable/star_white"
             android:title="즐겨찾기"
             android:id="@+id/menu_main_nav_bookmark"/>

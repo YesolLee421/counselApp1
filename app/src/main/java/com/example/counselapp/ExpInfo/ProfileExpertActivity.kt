@@ -1,4 +1,4 @@
-package com.example.counselapp
+package com.example.counselapp.ExpInfo
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -8,6 +8,11 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.view.View
 import android.widget.Toast
+import com.example.counselapp.CounselList.CounselManagingActivity
+import com.example.counselapp.MainBoardActivity
+import com.example.counselapp.MyPage.MyPageExpActivity
+import com.example.counselapp.R
+import com.example.counselapp.SearchExpertActivity
 import kotlinx.android.synthetic.main.activity_profile_expert.*
 
 class ProfileExpertActivity : AppCompatActivity() {
@@ -20,10 +25,17 @@ class ProfileExpertActivity : AppCompatActivity() {
         val drawerNav = findViewById<View>(R.id.navigation_profile_expert) as NavigationView
         drawerNav.setNavigationItemSelectedListener { item ->
             when(item!!.itemId){
-                R.id.menu_main_nav_myPage-> Toast.makeText(this,"마이페이지", Toast.LENGTH_SHORT).show()
-                R.id.menu_main_nav_bookmark-> Toast.makeText(this,"즐겨찾기 클릭", Toast.LENGTH_SHORT).show()
-                R.id.menu_main_nav_logOut-> Toast.makeText(this,"로그아웃 클릭", Toast.LENGTH_SHORT).show()
-                R.id.menu_main_nav_setting-> Toast.makeText(this,"설정 클릭", Toast.LENGTH_SHORT).show()
+                R.id.menu_main_nav_myPage ->{
+                    val intentMyPage = Intent(this, MyPageExpActivity::class.java)
+                    startActivity(intentMyPage)
+                }
+                R.id.menu_main_nav_counselList ->{
+                    val intentCounselList = Intent(this, CounselManagingActivity::class.java)
+                    startActivity(intentCounselList)
+                }
+                R.id.menu_main_nav_bookmark -> Toast.makeText(this,"즐겨찾기 클릭", Toast.LENGTH_SHORT).show()
+                R.id.menu_main_nav_logOut -> Toast.makeText(this,"로그아웃 클릭", Toast.LENGTH_SHORT).show()
+                R.id.menu_main_nav_setting -> Toast.makeText(this,"설정 클릭", Toast.LENGTH_SHORT).show()
             }
             true
         }
@@ -37,17 +49,17 @@ class ProfileExpertActivity : AppCompatActivity() {
         val bottomNavigation = findViewById<View>(R.id.bottom_nav_profile_expert) as BottomNavigationView
         bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when(item!!.itemId){
-                R.id.bottonbar_searchExp->{
-                    val intentExp = Intent(this,SearchExpertActivity::class.java)
+                R.id.bottonbar_searchExp ->{
+                    val intentExp = Intent(this, SearchExpertActivity::class.java)
                     startActivity(intentExp)
                     finish()
                 }
-                R.id.bottonbar_mainB->{
-                    val intentMain = Intent(this,MainBoardActivity::class.java)
+                R.id.bottonbar_mainB ->{
+                    val intentMain = Intent(this, MainBoardActivity::class.java)
                     startActivity(intentMain)
                     finish()
                 }
-                R.id.bottonbar_getCousel->
+                R.id.bottonbar_getCousel ->
                     Toast.makeText(this@ProfileExpertActivity,"상담받기",Toast.LENGTH_SHORT).show()
             }
             true

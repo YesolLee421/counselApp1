@@ -112,7 +112,7 @@
             android:id="@+id/navigation_write_post"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            app:menu="@menu/menu_main_nav_drawer"
+            app:menu="@menu/menu_write_post_bottombar"
             android:layout_gravity="start"
     />
 

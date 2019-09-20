@@ -8,6 +8,9 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.view.View
 import android.widget.Toast
+import com.example.counselapp.CounselList.CounselManagingActivity
+import com.example.counselapp.ExpInfo.ProfileExpertActivity
+import com.example.counselapp.MyPage.MyPageExpActivity
 import kotlinx.android.synthetic.main.activity_search_expert.*
 
 class SearchExpertActivity : AppCompatActivity() {
@@ -20,7 +23,14 @@ class SearchExpertActivity : AppCompatActivity() {
         val drawerNav = findViewById<View>(R.id.navigation_searchExp) as NavigationView
         drawerNav.setNavigationItemSelectedListener { item ->
             when(item!!.itemId){
-                R.id.menu_main_nav_myPage-> Toast.makeText(this,"마이페이지", Toast.LENGTH_SHORT).show()
+                R.id.menu_main_nav_myPage->{
+                    val intentMyPage = Intent(this, MyPageExpActivity::class.java)
+                    startActivity(intentMyPage)
+                }
+                R.id.menu_main_nav_counselList->{
+                    val intentCounselList = Intent(this, CounselManagingActivity::class.java)
+                    startActivity(intentCounselList)
+                }
                 R.id.menu_main_nav_bookmark-> Toast.makeText(this,"즐겨찾기 클릭", Toast.LENGTH_SHORT).show()
                 R.id.menu_main_nav_logOut-> Toast.makeText(this,"로그아웃 클릭", Toast.LENGTH_SHORT).show()
                 R.id.menu_main_nav_setting-> Toast.makeText(this,"설정 클릭", Toast.LENGTH_SHORT).show()
