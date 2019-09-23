@@ -1,18 +1,20 @@
 package com.example.counselapp.Post
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.support.design.widget.NavigationView
-import android.support.v4.view.GravityCompat
+
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import com.example.counselapp.CounselList.CounselManagingActivity
 import com.example.counselapp.MainBoardActivity
 import com.example.counselapp.MyPage.MyPageExpActivity
 import com.example.counselapp.R
 import com.example.counselapp.SearchExpertActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_checkpost.*
 
 class CheckPostActivity : AppCompatActivity() {
@@ -23,13 +25,13 @@ class CheckPostActivity : AppCompatActivity() {
 
         //툴바- 메뉴 클릭 등록
         ic_toolbar_menu_check_post.setOnClickListener {
-            drawerL_checkPost.openDrawer(GravityCompat.START)
+            //drawerL_checkPost.openDrawer(GravityCompat.START)
         }
 
         //드로워 네비게이션 뷰 등록
         val drawerNav = findViewById<View>(R.id.navigation_check_post) as NavigationView
         drawerNav.setNavigationItemSelectedListener { item ->
-            when(item!!.itemId){
+            when(item.itemId){
                 R.id.menu_main_nav_myPage ->{
                     val intentMyPage = Intent(this, MyPageExpActivity::class.java)
                     startActivity(intentMyPage)
@@ -48,7 +50,7 @@ class CheckPostActivity : AppCompatActivity() {
         //하단 네비게이션뷰 등록
         val bottomNavigation = findViewById<View>(R.id.bottom_nav_check_post) as BottomNavigationView
         bottomNavigation.setOnNavigationItemSelectedListener { item ->
-            when(item!!.itemId){
+            when(item.itemId){
                 R.id.bottonbar_searchExp ->{
                     val intentExp = Intent(this, SearchExpertActivity::class.java)
                     startActivity(intentExp)
@@ -68,10 +70,10 @@ class CheckPostActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if(drawerL_checkPost.isDrawerOpen(GravityCompat.START)){
-            drawerL_checkPost.closeDrawers()
-        }else{
-            super.onBackPressed()
-        }
+//        if(drawerL_checkPost.isDrawerOpen(GravityCompat.START)){
+//            drawerL_checkPost.closeDrawers()
+//        }else{
+//            super.onBackPressed()
+//        }
     }
 }

@@ -1,13 +1,15 @@
 package com.example.counselapp.Post
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.support.v4.view.GravityCompat
+
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import com.example.counselapp.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_write_post.*
 
 class WritePostActivity : AppCompatActivity() {
@@ -18,13 +20,13 @@ class WritePostActivity : AppCompatActivity() {
 
         //툴바- 메뉴 클릭 등록
         ic_toolbar_menu.setOnClickListener {
-            drawerL_writePost.openDrawer(GravityCompat.START)
+            //drawerL_writePost.openDrawer(GravityCompat.START)
         }
 
         //하단 네비게이션뷰 등록
         val bottomNavigation = findViewById<View>(R.id.bottom_nav_write_post) as BottomNavigationView
         bottomNavigation.setOnNavigationItemSelectedListener { item ->
-            when(item!!.itemId){
+            when(item.itemId){
                 R.id.bottom_bar_writePost_camera ->
                     Toast.makeText(this,"카메라실행", Toast.LENGTH_SHORT).show()
                 R.id.bottom_bar_writePost_gallery ->{

@@ -1,8 +1,8 @@
 package com.example.counselapp.MyPage
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.counselapp.R
 import kotlinx.android.synthetic.main.activity_my_page_exp.*
 

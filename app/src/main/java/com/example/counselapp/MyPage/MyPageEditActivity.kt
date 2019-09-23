@@ -1,7 +1,7 @@
 package com.example.counselapp.MyPage
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.counselapp.R
 
 class MyPageEditActivity : AppCompatActivity() {
