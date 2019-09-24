@@ -13,38 +13,38 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             >
-        <activity android:name=".Base.BaseActivity" >
+        <activity android:name=".base.BaseActivity">
         </activity>
-        <activity android:name=".CounselList.ChatRoomActivity">
+        <activity android:name=".counselList.ChatRoomActivity">
         </activity>
-        <activity android:name=".CounselList.CallListActivity">
+        <activity android:name=".counselList.CallListActivity">
         </activity>
-        <activity android:name=".CounselList.CounselDetailActivity">
+        <activity android:name=".counselList.CounselDetailActivity">
         </activity>
-        <activity android:name=".MyPage.MyPageEditActivity">
+        <activity android:name=".myPage.MyPageEditActivity">
         </activity>
-        <activity android:name=".CounselList.CounselManagingActivity">
+        <activity android:name=".counselList.CounselManagingActivity">
         </activity>
-        <activity android:name=".MyPage.MyPageExpActivity">
+        <activity android:name=".myPage.MyPageExpActivity">
         </activity>
         <activity android:name=".SignInActivity">
         </activity>
-        <activity android:name=".Post.WritePostActivity">
+        <activity android:name=".post.WritePostActivity">
         </activity>
         <activity android:name=".MainBoardActivity">
         </activity>
         <activity android:name=".LogInActivity">
         </activity>
-        <activity android:name=".ExpInfo.ProfileExpertActivity">
+        <activity android:name=".expInfo.ProfileExpertActivity">
         </activity>
         <activity android:name=".SearchExpertActivity">
         </activity>
-        <activity android:name=".Post.CheckPostActivity">
+        <activity android:name=".post.CheckPostActivity">
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
+                <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>

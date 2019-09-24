@@ -1,4 +1,4 @@
-package com.example.counselapp.Base
+package com.example.counselapp.base
 
 interface BaseView {
     fun showError (error : String)

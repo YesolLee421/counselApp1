@@ -1,4 +1,4 @@
-package com.example.counselapp.MyPage
+package com.example.counselapp.myPage
 
 import android.content.Intent
 import android.os.Bundle

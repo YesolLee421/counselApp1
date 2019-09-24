@@ -7,34 +7,42 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.GravityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.counselapp.Base.BaseActivity
-import com.example.counselapp.CounselList.CounselManagingActivity
-import com.example.counselapp.MyPage.MyPageExpActivity
-import com.example.counselapp.Post.CheckPostActivity
-import com.example.counselapp.Post.WritePostActivity
-import com.example.counselapp.Presenter.MainboardContract
-import com.example.counselapp.Presenter.MainboardPresenter
-import com.example.counselapp.adapter.mainAdapter
+import com.example.counselapp.base.BaseActivity
+import com.example.counselapp.counselList.CounselManagingActivity
+import com.example.counselapp.model.Post
+import com.example.counselapp.model.PostList
+import com.example.counselapp.myPage.MyPageExpActivity
+import com.example.counselapp.post.WritePostActivity
+import com.example.counselapp.presenter.MainboardContract
+import com.example.counselapp.presenter.MainboardPresenter
+import com.example.counselapp.R.layout.activity_mainboard
+import com.example.counselapp.adapter.MainAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
 import kotlinx.android.synthetic.main.activity_mainboard.*
 
 class MainBoardActivity : BaseActivity() , MainboardContract.View{
+
+    override fun showToast(title: String) {
+        Toast.makeText(this,"$title 클릭함",Toast.LENGTH_SHORT).show()
+    }
     // 일대일 연결할 프레젠터 선언
     // 리사이클러뷰, 레이아웃매니저, 데이터리스트 등
 
     private val recyclerView by lazy {
-        findViewById(R.id.rc_mainB) as RecyclerView
+        findViewById<RecyclerView>(R.id.rc_mainB)
     }
     private lateinit var presenter: MainboardPresenter
-    private lateinit var adapter: mainAdapter
+    private lateinit var adapter: MainAdapter
+    private var postData: ArrayList<Post>? = null
 
     override fun initPresenter() {
         presenter = MainboardPresenter().apply{
             view = this@MainBoardActivity
-            postList = postList
+            postData = PostList.getPostList(PostList.postData.size)
             adapterModel = adapter
             adapterView = adapter
         }
@@ -42,11 +50,13 @@ class MainBoardActivity : BaseActivity() , MainboardContract.View{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_mainboard)
+        setContentView(activity_mainboard)
 
         // 리사이클러뷰, 어댑터, 프레젠터
-        adapter = mainAdapter(this)
+        adapter = MainAdapter(this)
         recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
         initPresenter()
         presenter.loadItems(this,false)
 
@@ -96,12 +106,6 @@ class MainBoardActivity : BaseActivity() , MainboardContract.View{
             startActivity(intent)
         }
     }
-
-
-
-
-
-
 
 
     /*

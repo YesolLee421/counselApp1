@@ -4,10 +4,10 @@ import android.content.Intent
 
 import android.os.Bundle
 import android.widget.Toast
-import com.example.counselapp.Base.BaseActivity
-import com.example.counselapp.Model.User
-import com.example.counselapp.Presenter.LoginContract
-import com.example.counselapp.Presenter.LoginPresenter
+import com.example.counselapp.base.BaseActivity
+import com.example.counselapp.model.User
+import com.example.counselapp.presenter.LoginContract
+import com.example.counselapp.presenter.LoginPresenter
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LogInActivity : BaseActivity(), LoginContract.View {
@@ -19,6 +19,8 @@ class LogInActivity : BaseActivity(), LoginContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        loginPresenter = LoginPresenter()
 
         //프레젠터와 뷰 연결
         loginPresenter.takeView(this)

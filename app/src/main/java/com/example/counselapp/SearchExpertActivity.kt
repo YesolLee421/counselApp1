@@ -7,10 +7,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GravityCompat
-import com.example.counselapp.CounselList.CounselManagingActivity
-import com.example.counselapp.ExpInfo.ProfileExpertActivity
-import com.example.counselapp.MyPage.MyPageExpActivity
+import com.example.counselapp.counselList.CounselManagingActivity
+import com.example.counselapp.expInfo.ProfileExpertActivity
+import com.example.counselapp.myPage.MyPageExpActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_search_expert.*

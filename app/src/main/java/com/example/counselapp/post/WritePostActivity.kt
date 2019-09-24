@@ -1,4 +1,4 @@
-package com.example.counselapp.Post
+package com.example.counselapp.post
 
 import android.content.Intent
 
@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GravityCompat
 import com.example.counselapp.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_write_post.*

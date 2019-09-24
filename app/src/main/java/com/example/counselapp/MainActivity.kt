@@ -3,11 +3,12 @@ package com.example.counselapp
 import android.content.Intent
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.example.counselapp.Base.BaseActivity
-import kotlinx.android.synthetic.main.activity_login.*
+import com.example.counselapp.base.BaseActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
+    override fun initPresenter() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

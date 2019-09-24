@@ -1,4 +1,4 @@
-package com.example.counselapp.CounselList
+package com.example.counselapp.counselList
 
 import android.content.Intent
 import android.os.Bundle

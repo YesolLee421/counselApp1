@@ -70,7 +70,7 @@
             </LinearLayout>
         </ScrollView>
 
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btn_mainB_addPost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
                 android:src="@drawable/add_white"
                 android:layout_margin="8dp"/>
 
-        <android.support.design.widget.BottomNavigationView
+        <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_nav_mainB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,14 +87,14 @@
                 app:itemIconTint="@android:color/background_light"
                 app:itemTextColor="@android:color/background_light">
 
-        </android.support.design.widget.BottomNavigationView>
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
 
 
     </LinearLayout>
 
-    <android.support.design.widget.NavigationView
+    <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigation_mainB"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

@@ -1,4 +1,4 @@
-package com.example.counselapp.Model
+package com.example.counselapp.model
 
 data class User (
     val idx : Int,

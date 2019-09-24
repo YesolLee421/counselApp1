@@ -1,8 +1,8 @@
-package com.example.counselapp.Presenter
+package com.example.counselapp.presenter
 
-import com.example.counselapp.Base.BasePresenter
-import com.example.counselapp.Base.BaseView
-import com.example.counselapp.Model.User
+import com.example.counselapp.base.BasePresenter
+import com.example.counselapp.base.BaseView
+import com.example.counselapp.model.User
 
 interface LoginContract {
     interface View : BaseView{

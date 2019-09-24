@@ -3,25 +3,25 @@ package com.example.counselapp.adapter
 import android.content.Context
 
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.counselapp.Model.Post
+import com.example.counselapp.model.Post
 import com.example.counselapp.listener.onItemClickListener
 
-class mainAdapter(val context: Context) : RecyclerView.Adapter<mainViewHolder>(), mainAdapterContract.Model, mainAdapterContract.View {
+class MainAdapter(val context: Context) : RecyclerView.Adapter<MainViewHolder>(), MainAdapterContract.Model, MainAdapterContract.View {
+    override fun getItem(position: Int): Post = postList.get(position)
+
+    override var onClickFunc: ((Int) -> Unit)? = null
+
     private lateinit var postList: ArrayList<Post>
     var onItemClickListener: onItemClickListener? = null
 
-    override fun onBindViewHolder(holder: mainViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         postList[position].let {
             holder.onBind(it,position)
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = mainViewHolder(context,parent,
-        // !! 강제로 not null 처리
-        this.onItemClickListener!!
-    )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = MainViewHolder(context,parent,onClickFunc)
     override fun getItemCount(): Int = postList.size
 
     override fun notifyAdapter() {

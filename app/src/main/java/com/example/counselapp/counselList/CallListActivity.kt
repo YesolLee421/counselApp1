@@ -1,13 +1,13 @@
-package com.example.counselapp.MyPage
+package com.example.counselapp.counselList
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.counselapp.R
 
-class MyPageEditActivity : AppCompatActivity() {
+class CallListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_my_page_edit)
+        setContentView(R.layout.activity_call_list)
     }
 }
