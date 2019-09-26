@@ -8,12 +8,12 @@ import com.example.counselapp.model.Post
 import com.example.counselapp.listener.onItemClickListener
 
 class MainAdapter(val context: Context) : RecyclerView.Adapter<MainViewHolder>(), MainAdapterContract.Model, MainAdapterContract.View {
-    override fun getItem(position: Int): Post = postList.get(position)
+    override fun getItem(position: Int): Post = postList[position]
 
     override var onClickFunc: ((Int) -> Unit)? = null
 
     private lateinit var postList: ArrayList<Post>
-    var onItemClickListener: onItemClickListener? = null
+    //var onItemClickListener: onItemClickListener? = null
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         postList[position].let {

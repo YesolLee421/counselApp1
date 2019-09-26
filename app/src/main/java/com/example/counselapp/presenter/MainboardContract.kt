@@ -20,9 +20,5 @@ interface MainboardContract {
 
         fun loadItems(context: Context, isClear: Boolean)
 
-
-
-
-
     }
 }

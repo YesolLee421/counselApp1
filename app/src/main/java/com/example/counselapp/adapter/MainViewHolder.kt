@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.counselapp.model.Post
 import com.example.counselapp.R
 
-class MainViewHolder(val context: Context, parent: ViewGroup?, val onClickFunc : ((Int)->Unit)?) : RecyclerView.ViewHolder(LayoutInflater.from(context).inflate(
+class MainViewHolder(val context: Context, parent: ViewGroup?, val onClickFunc : ((Int)->Unit)?)
+    : RecyclerView.ViewHolder(LayoutInflater.from(context).inflate(
     R.layout.item_mainboard,parent,false)) {
 
 

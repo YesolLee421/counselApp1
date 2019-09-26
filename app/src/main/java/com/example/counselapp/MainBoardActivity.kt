@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.counselapp.R.id.*
 import com.example.counselapp.base.BaseActivity
 import com.example.counselapp.counselList.CounselManagingActivity
 import com.example.counselapp.model.Post
@@ -85,16 +86,16 @@ class MainBoardActivity : BaseActivity() , MainboardContract.View{
         }
 
         //하단 네비게이션뷰 등록
-        val bottomNavigation = findViewById<View>(R.id.bottom_nav_mainB) as BottomNavigationView
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_nav_mainB)
         bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when(item.itemId){
-                R.id.bottonbar_mainB->
+                bottonbar_mainB ->
                     Toast.makeText(this@MainBoardActivity,"메인화면",Toast.LENGTH_SHORT).show()
-                R.id.bottonbar_searchExp->{
+                bottonbar_searchExp ->{
                     val intentExp = Intent(this,SearchExpertActivity::class.java)
                     startActivity(intentExp)
                 }
-                R.id.bottonbar_getCousel-> {
+                bottonbar_getCousel -> {
                     val intentCase = Intent(this, CounselManagingActivity::class.java)
                     startActivity(intentCase)
                 }

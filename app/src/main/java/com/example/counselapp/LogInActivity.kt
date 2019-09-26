@@ -28,7 +28,7 @@ class LogInActivity : BaseActivity(), LoginContract.View {
         btn_logIn.setOnClickListener {
             val id = et_login_id.text.toString()
             val pw = et_login_pw.text.toString()
-            getLog(TAG,"id="+id+" / pw="+pw)
+            getLog(TAG, "id=$id / pw=$pw")
 
             val login = loginPresenter.doLogin(id,pw)
             getLog(TAG, login.toString())
