@@ -2,25 +2,28 @@ package com.example.counselapp.retrofit
 
 import com.example.counselapp.model.User
 import io.reactivex.Observable
+import io.reactivex.Single
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface CounselAppService {
 
-    @POST("register")
+    @POST("/auth/register")
     @FormUrlEncoded
     fun registerUser(@Field("id") id: String,
                      @Field("pw") pw: String,
                      @Field("name") name: String,
                      @Field("type") type: Int): Observable<String>
 
-    @POST("login")
+    @POST("/auth/login")
     @FormUrlEncoded
     fun loginUser(@Field("id") id: String,
-                     @Field("pw") pw: String): Observable<String>
+                     @Field("pw") pw: String): Call<String>
+    //
+
+//    @POST("/auth/login")
+//    @FormUrlEncoded
+//    fun loginUser(@Path("user") user: String): Single<User>
 
 
 //    @POST("register")

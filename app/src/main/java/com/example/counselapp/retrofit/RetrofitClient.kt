@@ -5,16 +5,16 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private var OurInstance: Retrofit? = null
+    private var ourInstance: Retrofit? = null
     val instance: Retrofit
         get() {
-            if(OurInstance==null){
-                OurInstance = Retrofit.Builder()
-                    .baseUrl("http://10.0.0.2:4000") // 에뮬에서 localhost
+            if(ourInstance==null){
+                ourInstance = Retrofit.Builder()
+                    .baseUrl("http://10.0.2.2:3000/") // 에뮬에서 localhost
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build()
             }
-            return OurInstance!!
+            return ourInstance!!
         }
 }

@@ -10,7 +10,7 @@ interface SearchExpContract {
 
     interface Presenter {
         var view: MainboardContract.View
-        var userList: ArrayList<User>
+        //var userList: ArrayList<User>
         var adapterModel: SearchExpertAdapterContract.Model
         var adapterView: MainAdapterContract.View?
 

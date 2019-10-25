@@ -1,6 +1,7 @@
 package com.example.counselapp.presenter
 
 import android.R
+import android.annotation.SuppressLint
 import android.util.Log
 import android.widget.Toast
 import com.example.counselapp.LogInActivity
@@ -26,45 +27,94 @@ class LoginPresenter : LoginContract.Presenter {
     var loginfailPw = 200;
     var loginfailId = 300;
 
-    // 인터페이스 선언
-    lateinit var service: CounselAppService
-    var compositeDisposable = CompositeDisposable()
+    override lateinit var presenterService: CounselAppService
 
-    override var userData: ArrayList<User> = UserList.getUserList()
+    override lateinit var presenterCompositeDisposable: CompositeDisposable
 
-    override fun doLogin(id: String, pw: String, service: CounselAppService, compositeDisposable: CompositeDisposable): String {
+    //override var userData: ArrayList<User> = UserList.getUserList()
 
-        var msg: String? = null
+    @SuppressLint("CheckResult")
+    override fun doLogin(id: String, pw: String){
 
-        compositeDisposable.add(service.loginUser(id,pw)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe( { message ->
-                if(message.contains("name")){
-                    msg = "로그인 성공"
-                    Log.d(TAG,"로그인 성공: "+ message.toString())
-                }else{
-                    msg = message
-                    Log.d(TAG,"CUSTOM ERROR:"+ message.toString())
+        Log.d(TAG,"service=${presenterService}")
+        Log.d(TAG,"composite=${presenterCompositeDisposable}")
+
+        val call = presenterService.loginUser(id,pw)
+        call.enqueue(object : Callback<String>{
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                Log.d(TAG,"onFailure: ${t.message}")
+                loginView!!.showToast(t.message.toString())
+            }
+
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                if(response.code()==200){
+                    //val userNow = response.body()
+                    Log.d(TAG,"onResponse: ${response.body()}")
+                    loginView!!.showToast(response.body().toString())
                 }
-            }, { throwable -> msg = throwable.localizedMessage; Log.d(TAG,"SERVER ERROR:"+ msg) } )
-        )
-        return msg.toString()
+            }
+//            override fun onFailure(call: Call<User>, t: Throwable) {
+//                Log.d(TAG,"onFailure: ${t.message}")
+//                msg = t.message.toString()
+//            }
+//
+//            override fun onResponse(call: Call<User>, response: Response<User>) {
+//                if(response.code()==200){
+//                    val userNow = response.body()
+//                    msg = "${userNow!!.name} 님 로그인 성공"
+//                    Log.d(TAG,"onResponse: ${userNow.name}")
+//                }
+//            }
+        })
+
+//        presenterService.loginUser(id,pw)
+//            .subscribeOn(Schedulers.io())
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribe({
+//                msg = it.name
+//            },{
+//                Log.d(TAG,"ERROR message : ${it.message}")
+//            })
+
+
+
+
+//        presenterCompositeDisposable.add(presenterService.loginUser(id,pw)
+//            .subscribeOn(Schedulers.io())
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribe({
+//                msg = it
+//            }, {
+//                Log.d(TAG,"ERROR message : ${it.message}")
+//            })
+//        )
+
+//        presenterCompositeDisposable.add(presenterService.loginUser(id,pw)
+//            .subscribeOn(Schedulers.io())
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribe( { message ->
+//                if(message.contains("name")){
+//                    msg = "로그인 성공"
+//                    Log.d(TAG,"로그인 성공: "+ message.toString())
+//                }else{
+//                    msg = message
+//                    Log.d(TAG,"CUSTOM ERROR:"+ message.toString())
+//                }
+//            }, { throwable -> msg = throwable.localizedMessage; Log.d(TAG,"SERVER ERROR:"+ msg) } )
+//        )
 
     }
-
 
     // Presenter와 일대일 연결될 뷰 선언
     private var loginView : LoginContract.View? = null
 
-    override fun getUserList() {
-        // 로딩 시작 -> 모델에서 DogList 전달받기 ->View에 전달 ->로딩 완료
-        //loginView?.showLoading() // 아마 변수가 null 아닐 때 함수 작동할듯
-
-        // 입력된 아이디, 비밀번호 비교해야되는데?
-        loginView?.checkUserList(userData) // 정보를 뷰에 전달
-
-    }
+//    override fun getUserList() {
+//        // 로딩 시작 -> 모델에서 DogList 전달받기 ->View에 전달 ->로딩 완료
+//        //loginView?.showLoading() // 아마 변수가 null 아닐 때 함수 작동할듯
+//
+//        // 입력된 아이디, 비밀번호 비교해야되는데?
+//        loginView?.checkUserList(userData) // 정보를 뷰에 전달
+//    }
 
     override fun takeView(view: LoginContract.View) {
         loginView = view

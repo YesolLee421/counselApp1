@@ -16,6 +16,10 @@ import retrofit2.Retrofit
 import retrofit2.create
 
 class LogInActivity : BaseActivity(), LoginContract.View {
+    override fun showToast(msg: String) {
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show()
+    }
+
     // 일대일 연결할 프레젠터 선언
     private lateinit var loginPresenter: LoginPresenter
 
@@ -23,7 +27,9 @@ class LogInActivity : BaseActivity(), LoginContract.View {
     lateinit var service: CounselAppService
     var compositeDisposable = CompositeDisposable()
 
-
+    // retrofitClient 객체 생성
+    val retrofitClient: Retrofit = RetrofitClient.instance
+    
     var TAG = "LogInActivity"
 
     override fun onStop() {
@@ -40,35 +46,18 @@ class LogInActivity : BaseActivity(), LoginContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        loginPresenter = LoginPresenter()
+        initPresenter()
 
         //프레젠터와 뷰 연결
         loginPresenter.takeView(this)
 
-        // 서비스 시작
-        val retrofitClient: Retrofit = RetrofitClient.instance
-        service = retrofitClient.create(CounselAppService::class.java)
 
         btn_logIn.setOnClickListener {
             val id = et_login_id.text.toString()
             val pw = et_login_pw.text.toString()
             getLog(TAG, "id=$id / pw=$pw")
 
-            val login = loginPresenter.doLogin(id,pw,service, compositeDisposable)
-            getLog(TAG + "login: ", login)
-
-            Toast.makeText(this,login,Toast.LENGTH_SHORT).show()
-
-//            when(login){
-//                "100" -> {
-//                    val loginIntent = Intent(this, MainBoardActivity::class.java)
-//                    startActivity(loginIntent)
-//                    finish()
-//                }
-//                "200" -> Toast.makeText(this,"비밀번호가 틀렸습니다",Toast.LENGTH_SHORT).show()
-//                "300" -> Toast.makeText(this,"회원정보가 없습니다",Toast.LENGTH_SHORT).show()
-//            }
-
+            loginPresenter.doLogin(id,pw)
         }
 
         text_logIn_signIn.setOnClickListener {
@@ -79,7 +68,13 @@ class LogInActivity : BaseActivity(), LoginContract.View {
     }
 
     override fun initPresenter() {
-        loginPresenter = LoginPresenter()
+        // 서비스 시작
+        service = retrofitClient.create(CounselAppService::class.java)
+
+        loginPresenter = LoginPresenter().apply {
+            presenterService = service
+            presenterCompositeDisposable = compositeDisposable
+        }
     }
 
     override fun showLoading() {

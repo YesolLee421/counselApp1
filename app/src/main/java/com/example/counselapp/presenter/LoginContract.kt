@@ -12,11 +12,15 @@ interface LoginContract {
         fun showLoading()
         fun hideLoading()
         fun checkUserList(userList : List<User>)
+        fun showToast(msg: String)
     }
 
     interface Presenter : BasePresenter<View>{
-        var userData : ArrayList<User>
-        fun getUserList()
-        fun doLogin(id: String, pw: String, service: CounselAppService, compositeDisposable: CompositeDisposable): String
+        //var userData : ArrayList<User>
+
+        var presenterService: CounselAppService
+        var presenterCompositeDisposable: CompositeDisposable
+        //fun getUserList()
+        fun doLogin(id: String, pw: String)
     }
 }

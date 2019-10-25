@@ -30,8 +30,8 @@ class SearchExpViewHolder(val context: Context, parent: ViewGroup?, val onClicFu
     }
     fun onBind(item: User, position: Int){
         textName.text = item.name
-        textDescription.text = item.description
-        textBelongTo.text = item.belongTo
+//        textDescription.text = item.description
+//        textBelongTo.text = item.belongTo
 
         itemView.setOnClickListener { onClicFunc?.invoke(position) }
     }
