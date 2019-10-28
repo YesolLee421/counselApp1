@@ -16,9 +16,17 @@ import retrofit2.Retrofit
 import retrofit2.create
 
 class LogInActivity : BaseActivity(), LoginContract.View {
+    override fun moveTo() {
+        val intent = Intent(this, MainBoardActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
     override fun showToast(msg: String) {
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show()
     }
+
+
 
     // 일대일 연결할 프레젠터 선언
     private lateinit var loginPresenter: LoginPresenter

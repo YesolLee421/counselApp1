@@ -51,20 +51,9 @@ class LoginPresenter : LoginContract.Presenter {
                     //val userNow = response.body()
                     Log.d(TAG,"onResponse: ${response.body()}")
                     loginView!!.showToast(response.body().toString())
+                    loginView!!.moveTo() // 인텐트도 오버라이드
                 }
             }
-//            override fun onFailure(call: Call<User>, t: Throwable) {
-//                Log.d(TAG,"onFailure: ${t.message}")
-//                msg = t.message.toString()
-//            }
-//
-//            override fun onResponse(call: Call<User>, response: Response<User>) {
-//                if(response.code()==200){
-//                    val userNow = response.body()
-//                    msg = "${userNow!!.name} 님 로그인 성공"
-//                    Log.d(TAG,"onResponse: ${userNow.name}")
-//                }
-//            }
         })
 
 //        presenterService.loginUser(id,pw)

@@ -13,6 +13,7 @@ interface LoginContract {
         fun hideLoading()
         fun checkUserList(userList : List<User>)
         fun showToast(msg: String)
+        fun moveTo()
     }
 
     interface Presenter : BasePresenter<View>{

@@ -13,7 +13,7 @@ interface CounselAppService {
     fun registerUser(@Field("id") id: String,
                      @Field("pw") pw: String,
                      @Field("name") name: String,
-                     @Field("type") type: Int): Observable<String>
+                     @Field("type") type: Int): Call<String>
 
     @POST("/auth/login")
     @FormUrlEncoded
