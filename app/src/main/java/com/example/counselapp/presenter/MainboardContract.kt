@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.counselapp.model.PostList
 import com.example.counselapp.adapter.MainAdapterContract
 import com.example.counselapp.model.Post
+import com.example.counselapp.retrofit.CounselAppService
 
 interface MainboardContract {
     interface View {
@@ -11,8 +12,9 @@ interface MainboardContract {
     }
 
     interface Presenter{
+        var presenterService: CounselAppService
         var view: View
-        var postList: ArrayList<Post>
+        var postList: List<Post>
         // takeView(), dropView() : BasePresenter에 있음
 
         var adapterModel: MainAdapterContract.Model

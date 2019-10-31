@@ -18,17 +18,17 @@ class MainViewHolder(val context: Context, parent: ViewGroup?, val onClickFunc :
     private val text_title by lazy {
         itemView.findViewById(R.id.item_mainboard_title) as TextView
     }
-    private val text_nickname by lazy {
-        itemView.findViewById(R.id.item_mainboard_nickname) as TextView
+    private val text_commenter by lazy {
+        itemView.findViewById(R.id.item_mainboard_commenter) as TextView
     }
-    private val text_keywords by lazy {
-        itemView.findViewById(R.id.item_mainboard_keywords) as TextView
+    private val text_content by lazy {
+        itemView.findViewById(R.id.item_mainboard_content) as TextView
     }
 
     fun onBind(item: Post, position: Int){
         text_title.text = item.title
-        text_nickname.text = item.nickname
-        text_keywords.text = item.keywords
+        text_commenter.text = item.commenter
+        text_content.text = item.content
 
         itemView.setOnClickListener {
             onClickFunc?.invoke(position)

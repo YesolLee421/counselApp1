@@ -19,12 +19,12 @@
                     android:layout_height="wrap_content"
             />
             <TextView
-                    android:id="@+id/item_mainboard_nickname"
+                    android:id="@+id/item_mainboard_commenter"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
             />
             <TextView
-                    android:id="@+id/item_mainboard_keywords"
+                    android:id="@+id/item_mainboard_content"
                     android:gravity="end"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

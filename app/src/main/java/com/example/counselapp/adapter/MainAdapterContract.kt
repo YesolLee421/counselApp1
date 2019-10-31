@@ -11,7 +11,7 @@ interface MainAdapterContract {
         // Int 받아서 return 값 없는 함수
     }
     interface Model{
-        fun addItems(postList: ArrayList<Post>)
+        fun addItems(postList: List<Post>)
         fun clearItems()
         fun getItem(position: Int): Post
     }

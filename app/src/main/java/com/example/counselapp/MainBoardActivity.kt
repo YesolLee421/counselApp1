@@ -3,6 +3,7 @@ package com.example.counselapp
 import android.content.Intent
 
 import android.os.Bundle
+import android.util.Log
 
 import android.view.View
 import android.widget.Toast
@@ -20,10 +21,16 @@ import com.example.counselapp.presenter.MainboardContract
 import com.example.counselapp.presenter.MainboardPresenter
 import com.example.counselapp.R.layout.activity_mainboard
 import com.example.counselapp.adapter.MainAdapter
+import com.example.counselapp.retrofit.CounselAppService
+import com.example.counselapp.retrofit.RetrofitClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
 import kotlinx.android.synthetic.main.activity_mainboard.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
 
 class MainBoardActivity : BaseActivity() , MainboardContract.View{
 
@@ -40,10 +47,21 @@ class MainBoardActivity : BaseActivity() , MainboardContract.View{
     private lateinit var adapter: MainAdapter
     private var postData: ArrayList<Post>? = null
 
+    // 서비스 선언
+    lateinit var service: CounselAppService
+
+    // retrofitClient 객체 생성
+    val retrofitClient: Retrofit = RetrofitClient.instance
+
+    var TAG = "MainBoardActivity"
+
     override fun initPresenter() {
+        // 서비스 시작
+        service = retrofitClient.create(CounselAppService::class.java)
         presenter = MainboardPresenter().apply{
             view = this@MainBoardActivity
-            postData = PostList.getPostList(PostList.postData.size)
+            presenterService = service
+            //postData = PostList.getPostList(PostList.postData.size)
             adapterModel = adapter
             adapterView = adapter
         }
@@ -59,6 +77,7 @@ class MainBoardActivity : BaseActivity() , MainboardContract.View{
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         initPresenter()
+
         presenter.loadItems(this,false)
 
         // 드로워 네비게이션 뷰 등록

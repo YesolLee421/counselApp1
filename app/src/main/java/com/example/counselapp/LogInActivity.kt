@@ -75,6 +75,7 @@ class LogInActivity : BaseActivity(), LoginContract.View {
         }
     }
 
+    // 여기서 데이터 연결?
     override fun initPresenter() {
         // 서비스 시작
         service = retrofitClient.create(CounselAppService::class.java)

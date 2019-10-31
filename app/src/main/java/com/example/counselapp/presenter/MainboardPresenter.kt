@@ -1,13 +1,22 @@
 package com.example.counselapp.presenter
 
 import android.content.Context
+import android.util.Log
 import com.example.counselapp.model.PostList
 import com.example.counselapp.adapter.MainAdapterContract
 import com.example.counselapp.model.Post
+import com.example.counselapp.retrofit.CounselAppService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.security.spec.PSSParameterSpec
 
 class MainboardPresenter :MainboardContract.Presenter{
 
     override lateinit var view: MainboardContract.View
+
+    var TAG = "LoginPresenter"
+    override lateinit var presenterService: CounselAppService
 
     // 여기서 선언하기 때문에 takeView(), dropView()필요없음
     override lateinit var adapterModel: MainAdapterContract.Model
@@ -23,24 +32,40 @@ class MainboardPresenter :MainboardContract.Presenter{
         }
     }
 
-    override var postList: ArrayList<Post> = PostList.getPostList(PostList.postData.size)
+
+
+
+    override lateinit var postList: List<Post>
     
     override fun loadItems(context: Context, isClear: Boolean) {
-        postList.let {
-            if(isClear){
-                adapterModel.clearItems()
+        val call = presenterService.getAllPosts()
+        call.enqueue(object : Callback<List<Post>>{
+            override fun onFailure(call: Call<List<Post>>, t: Throwable) {
+                Log.d(TAG,"onFailure: ${t.message}")
+                view.showToast(t.message.toString());
             }
-            adapterModel.addItems(it)
-            adapterView?.notifyAdapter() // presenter에서 어댑터 직접 접근, view, model 접근
-        }
+            override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
+                if(response.code()==200){
+                    postList = response.body()!!
+                    postList.let {
+                        if(isClear){
+                            adapterModel.clearItems()
+                        }
+                        adapterModel.addItems(it)
+                        adapterView?.notifyAdapter() // presenter에서 어댑터 직접 접근, view, model 접근
+                    }
+                    Log.d(TAG,"onResponse: 성공")
+                    //view.showToast(response.body().toString())
+                }
+            }
+        })
+//        postList.let {
+//            if(isClear){
+//                adapterModel.clearItems()
+//            }
+//            adapterModel.addItems(it)
+//            adapterView?.notifyAdapter() // presenter에서 어댑터 직접 접근, view, model 접근
+//        }
 
     }
-
-
-
-
-
-
-
-
 }

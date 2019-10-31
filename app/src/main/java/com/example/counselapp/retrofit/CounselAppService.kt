@@ -1,5 +1,6 @@
 package com.example.counselapp.retrofit
 
+import com.example.counselapp.model.Post
 import com.example.counselapp.model.User
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -19,24 +20,38 @@ interface CounselAppService {
     @FormUrlEncoded
     fun loginUser(@Field("id") id: String,
                      @Field("pw") pw: String): Call<String>
-    //
 
-//    @POST("/auth/login")
-//    @FormUrlEncoded
-//    fun loginUser(@Path("user") user: String): Single<User>
+    //-----------------------------------------------------------------
+
+    // 모든 게시물 보기
+    @GET("/posts")
+//    @FormUrlEncoded // form 형태로 데이터 안 보내는 경우 필요 없는 듯
+    fun getAllPosts(): Call<List<Post>>
+
+    // 개별 게시물 보기
+    @GET("/posts/{id}")
+    @FormUrlEncoded
+    fun getPost(@Path("id") id : String): Call<Post>
+
+    // 새 게시물 생성
+    @POST("/posts")
+    @FormUrlEncoded
+    fun writePost(@Field("commenter") commenter: String,
+                    @Field("title") title: String,
+                  @Field("content") content: String): Call<String>
+
+    // 기존 게시물 수정
+    @PUT("/posts/{id}")
+    @FormUrlEncoded
+    fun updatePost(@Path("id") id: String,
+                   @Field("title") title: String,
+                   @Field("content") content: String): Call<String>
+
+    // 게시물 삭제
+    @DELETE("/posts/{id}")
+    @FormUrlEncoded
+    fun deletePost(@Path("id") id: String): Call<String>
 
 
-//    @POST("register")
-//    @FormUrlEncoded
-//    fun register(@Query("id") id:String,
-//                 @Query("pw") pw: String,
-//                 @Query("name") name:String,
-//                 @Query("type") type: Int) :
-//            Call<User>
-//
-//    @POST("login")
-//    @FormUrlEncoded
-//    fun login(@Query("id") id:String,
-//              @Query("pw") pw: String) : Call<User>
 
 }

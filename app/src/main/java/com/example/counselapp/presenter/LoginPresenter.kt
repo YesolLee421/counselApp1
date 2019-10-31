@@ -19,14 +19,6 @@ import retrofit2.*
 class LoginPresenter : LoginContract.Presenter {
 
     var TAG = "LoginPresenter"
-
-    // 로그인하기
-    //val userList = UserList.getUserList()
-    // login성공, 비밀번호 틀림, 회원정보 없음
-    var loginSuccess = 100;
-    var loginfailPw = 200;
-    var loginfailId = 300;
-
     override lateinit var presenterService: CounselAppService
 
     override lateinit var presenterCompositeDisposable: CompositeDisposable
@@ -48,7 +40,6 @@ class LoginPresenter : LoginContract.Presenter {
 
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 if(response.code()==200){
-                    //val userNow = response.body()
                     Log.d(TAG,"onResponse: ${response.body()}")
                     loginView!!.showToast(response.body().toString())
                     loginView!!.moveTo() // 인텐트도 오버라이드
@@ -64,8 +55,6 @@ class LoginPresenter : LoginContract.Presenter {
 //            },{
 //                Log.d(TAG,"ERROR message : ${it.message}")
 //            })
-
-
 
 
 //        presenterCompositeDisposable.add(presenterService.loginUser(id,pw)
@@ -96,14 +85,6 @@ class LoginPresenter : LoginContract.Presenter {
 
     // Presenter와 일대일 연결될 뷰 선언
     private var loginView : LoginContract.View? = null
-
-//    override fun getUserList() {
-//        // 로딩 시작 -> 모델에서 DogList 전달받기 ->View에 전달 ->로딩 완료
-//        //loginView?.showLoading() // 아마 변수가 null 아닐 때 함수 작동할듯
-//
-//        // 입력된 아이디, 비밀번호 비교해야되는데?
-//        loginView?.checkUserList(userData) // 정보를 뷰에 전달
-//    }
 
     override fun takeView(view: LoginContract.View) {
         loginView = view
