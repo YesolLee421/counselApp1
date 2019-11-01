@@ -30,7 +30,6 @@ interface CounselAppService {
 
     // 개별 게시물 보기
     @GET("/posts/{id}")
-    @FormUrlEncoded
     fun getPost(@Path("id") id : String): Call<Post>
 
     // 새 게시물 생성

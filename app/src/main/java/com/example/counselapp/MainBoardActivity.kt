@@ -21,6 +21,7 @@ import com.example.counselapp.presenter.MainboardContract
 import com.example.counselapp.presenter.MainboardPresenter
 import com.example.counselapp.R.layout.activity_mainboard
 import com.example.counselapp.adapter.MainAdapter
+import com.example.counselapp.post.CheckPostActivity
 import com.example.counselapp.retrofit.CounselAppService
 import com.example.counselapp.retrofit.RetrofitClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -33,6 +34,12 @@ import retrofit2.Response
 import retrofit2.Retrofit
 
 class MainBoardActivity : BaseActivity() , MainboardContract.View{
+    override fun moveToPost(_id: String) {
+        val intent = Intent(this, CheckPostActivity::class.java)
+        intent.putExtra("postId",_id)
+        startActivity(intent)
+        finish()
+    }
 
     override fun showToast(title: String) {
         Toast.makeText(this,"$title 클릭함",Toast.LENGTH_SHORT).show()
@@ -45,7 +52,6 @@ class MainBoardActivity : BaseActivity() , MainboardContract.View{
     }
     private lateinit var presenter: MainboardPresenter
     private lateinit var adapter: MainAdapter
-    private var postData: ArrayList<Post>? = null
 
     // 서비스 선언
     lateinit var service: CounselAppService

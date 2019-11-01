@@ -26,6 +26,11 @@ import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_search_expert.*
 
 class SearchExpertActivity : BaseActivity(), MainboardContract.View {
+    override fun moveToPost(_id: String) {
+        val intentExp = Intent(this,MainBoardActivity::class.java)
+        startActivity(intentExp)
+        finish()
+    }
 
     private val recyclerView by lazy { findViewById<RecyclerView>(R.id.rc_searchExp) }
     private lateinit var presenter: SearchExpPresenter

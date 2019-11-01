@@ -2,14 +2,12 @@ package com.example.counselapp.presenter
 
 import android.content.Context
 import android.util.Log
-import com.example.counselapp.model.PostList
 import com.example.counselapp.adapter.MainAdapterContract
 import com.example.counselapp.model.Post
 import com.example.counselapp.retrofit.CounselAppService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.security.spec.PSSParameterSpec
 
 class MainboardPresenter :MainboardContract.Presenter{
 
@@ -29,6 +27,8 @@ class MainboardPresenter :MainboardContract.Presenter{
     private fun onClickListener(position: Int){
         adapterModel.getItem(position).let {
             view.showToast(it.title)
+            Log.d(TAG,it._id)
+            view.moveToPost(it._id)
         }
     }
 

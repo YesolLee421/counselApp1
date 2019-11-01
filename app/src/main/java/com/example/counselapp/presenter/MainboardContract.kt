@@ -9,6 +9,7 @@ import com.example.counselapp.retrofit.CounselAppService
 interface MainboardContract {
     interface View {
         fun showToast(title: String)
+        fun moveToPost(_id: String)
     }
 
     interface Presenter{

@@ -57,48 +57,46 @@
 
         <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1"
                 android:layout_margin="8dp">
-            <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                           android:orientation="vertical">
                 <TextView
                         android:textColor="@android:color/black"
                         android:id="@+id/text_checkPost_title"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="4dp"
-                        android:text="사소한 일로 친구랑 싸웠어요. 어떻게 사과하면 될까요?"/>
+                        />
                 <TextView
+                        android:id="@+id/text_checkPost_commenter_date_lastChanged"
                         android:textColor="@android:color/black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="BY 솔이  |   23:34:44"/>
+                        />
                 <TextView
+                        android:id="@+id/text_checkPost_hit_like_comments"
                         android:textColor="@android:color/black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="조회 132  |  격려 35  |  댓글 3"/>
+                        />
 
                 <TextView
-
+                        android:id="@+id/text_checkPost_content"
                         android:textColor="@android:color/black"
                         android:layout_marginVertical="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="많이 품고 있는 이상! 이것이야말로 무한한 가치를 가진 것이다 사람은 크고 작고 간에 이상이 있음으로써 용감하고
-
-찬미를 듣는다 그것은 웅대한 관현악이며 미묘한 교향악이다 뼈 끝에 스며들어 가는 열락의 소리다이것은 피어나기 전인 유소년에게서 구하지 못할 바이며 시들어 가는 노년에게서 구하지 못할 바이며 오직 우리 청춘에서만 구할 수 있는 것이다 청춘은 인생의 황금시대다 우리는 이 황금시대의 가치를 충분히 발휘하기 위하여
-
-얼마나 쓸쓸하랴? 얼음에 싸인 만물은 얼음이 있을 뿐이다 그들에게 생명을 불어 넣는 것은 따뜻한 봄바람이다 풀밭에 속잎나고 가지에 싹이 트고 꽃 피고 새 우는 봄날의 천지는 얼마나 기쁘며"/>
+                        />
 
                 <ToggleButton
+                        android:id="@+id/btn_checkPost_like"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textOn="격려 35"
-                        android:textOff="격려 34"/>
+                />
 
                 <TabHost android:layout_width="match_parent" android:layout_height="wrap_content">
                     <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
@@ -106,14 +104,14 @@
                         <TabWidget android:id="@android:id/tabs" android:layout_width="match_parent" android:layout_height="wrap_content"/>
                         <FrameLayout android:id="@android:id/tabcontent" android:layout_width="match_parent"
                                      android:layout_height="match_parent">
-                            <android.support.constraint.ConstraintLayout android:id="@+id/text_checkPost_tab_content1" android:layout_width="match_parent"
+                            <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/text_checkPost_tab_content1" android:layout_width="match_parent"
                                                                          android:layout_height="match_parent">
                                 <TextView app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent" android:text="전문가 댓글 레이아웃" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-                            </android.support.constraint.ConstraintLayout>
-                            <android.support.constraint.ConstraintLayout android:id="@+id/text_checkPost_tab_content2" android:layout_width="match_parent"
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                            <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/text_checkPost_tab_content2" android:layout_width="match_parent"
                                                                          android:layout_height="match_parent">
                                 <TextView app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent" android:text="일반 사용자 댓글 레이아웃" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-                            </android.support.constraint.ConstraintLayout>
+                            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
                         </FrameLayout>
@@ -132,7 +130,7 @@
 
         </ScrollView>
 
-        <android.support.design.widget.BottomNavigationView
+        <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_nav_check_post"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -141,14 +139,14 @@
                 app:itemIconTint="@android:color/background_light"
                 app:itemTextColor="@android:color/background_light">
 
-        </android.support.design.widget.BottomNavigationView>
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
 
 
     </LinearLayout>
 
-    <android.support.design.widget.NavigationView
+    <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigation_check_post"
 
             android:layout_width="wrap_content"
