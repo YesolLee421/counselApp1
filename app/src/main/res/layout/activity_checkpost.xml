@@ -76,12 +76,32 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         />
-                <TextView
-                        android:id="@+id/text_checkPost_hit_like_comments"
-                        android:textColor="@android:color/black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        />
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    <TextView
+                            android:id="@+id/text_checkPost_hit_like_comments"
+                            android:textColor="@android:color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                    />
+                    <TextView
+                            android:text="수정"
+                            android:layout_width="wrap_content"
+                            android:gravity="end"
+                            android:layout_height="wrap_content" android:id="@+id/text_checkPost_update"
+                            />
+                    <TextView
+                            android:text="삭제"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            android:gravity="end"
+                            android:layout_height="wrap_content" android:id="@+id/text_checkPost_delete"
+                            />
+                </LinearLayout>
 
                 <TextView
                         android:id="@+id/text_checkPost_content"

@@ -38,7 +38,6 @@ class MainBoardActivity : BaseActivity() , MainboardContract.View{
         val intent = Intent(this, CheckPostActivity::class.java)
         intent.putExtra("postId",_id)
         startActivity(intent)
-        finish()
     }
 
     override fun showToast(title: String) {
@@ -84,7 +83,8 @@ class MainBoardActivity : BaseActivity() , MainboardContract.View{
 
         initPresenter()
 
-        presenter.loadItems(this,false)
+        // onStart()로 옮기기
+        //presenter.loadItems(this,false)
 
         // 드로워 네비게이션 뷰 등록
         val drawerNav = findViewById<View>(R.id.navigation_mainB) as NavigationView
@@ -131,6 +131,11 @@ class MainBoardActivity : BaseActivity() , MainboardContract.View{
             val intent = Intent(this, WritePostActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        presenter.loadItems(this,false)
     }
 
 

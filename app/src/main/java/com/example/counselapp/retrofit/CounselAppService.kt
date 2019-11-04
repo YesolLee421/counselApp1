@@ -48,7 +48,6 @@ interface CounselAppService {
 
     // 게시물 삭제
     @DELETE("/posts/{id}")
-    @FormUrlEncoded
     fun deletePost(@Path("id") id: String): Call<String>
 
 

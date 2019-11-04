@@ -7,7 +7,10 @@ import android.util.Log
 
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.ContextThemeWrapper
+import androidx.core.view.GravityCompat
 import com.example.counselapp.counselList.CounselManagingActivity
 import com.example.counselapp.MainBoardActivity
 import com.example.counselapp.myPage.MyPageExpActivity
@@ -33,6 +36,7 @@ class CheckPostActivity : BaseActivity_noMVP() {
     val retrofitClient: Retrofit = RetrofitClient.instance
     lateinit var service: CounselAppService
     lateinit var post: Post
+    lateinit var _id: String
 
 
 
@@ -40,34 +44,58 @@ class CheckPostActivity : BaseActivity_noMVP() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_checkpost)
         // 인텐트로 전달한 _id
-        val _id = intent.getStringExtra("postId")
+        _id = intent.getStringExtra("postId")
         getLog(TAG,_id)
 
         // 서비스 시작
         service = retrofitClient.create(CounselAppService::class.java)
-        // 데이터 불러오기
-        val call = service.getPost(_id)
-        call.enqueue(object : Callback<Post>{
-            override fun onFailure(call: Call<Post>, t: Throwable) {
-                Log.d(TAG,"onFailure: ${t.message}")
-                showToast(t.message.toString(), this@CheckPostActivity);
-            }
-            override fun onResponse(call: Call<Post>, response: Response<Post>) {
-                if(response.code()==200){
-                    post = response.body()!!
-                    text_checkPost_title.text = post.title
-                    text_checkPost_content.text = post.content
-                    text_checkPost_hit_like_comments.text = "조회 ${post.hit} | 격려 ${post.like} | 댓글 ${post.comments}"
-                    text_checkPost_commenter_date_lastChanged.text = "${post.commenter} | ${post.date_lastChanged}"
-                    //Log.d(TAG,"onResponse: 성공")
-                    //view.showToast(response.body().toString())
-                }
-            }
-        })
 
+
+        // 수정 버튼 클릭
+        text_checkPost_update.setOnClickListener {
+            val intentUpdate = Intent(this, WritePostActivity::class.java)
+            intentUpdate.putExtra("postId", _id)
+            intentUpdate.putExtra("title", text_checkPost_title.text.toString())
+            intentUpdate.putExtra("content", text_checkPost_content.text.toString())
+            getLog(TAG, intentUpdate.getStringExtra("title"))
+            startActivity(intentUpdate)
+        }
+
+        // 삭제 버튼 클릭
+        text_checkPost_delete.setOnClickListener {
+            // dialog 띄워서 묻고 삭제
+
+            val builder = AlertDialog.Builder(ContextThemeWrapper(this, R.style.Theme_AppCompat_Light_Dialog))
+            builder.setMessage("정말로 삭제하시겠습니까?")
+
+            builder.setPositiveButton("확인") {dialog, id ->
+                val call = service.deletePost(_id)
+                call.enqueue(object : Callback<String>{
+                    override fun onFailure(call: Call<String>, t: Throwable) {
+                        Log.d(TAG,"onFailure: ${t.message}")
+                        showToast(t.message.toString(), this@CheckPostActivity);
+                    }
+                    override fun onResponse(call: Call<String>, response: Response<String>) {
+                        if(response.code()==200){
+                            Log.d(TAG,"onResponse: 성공")
+                            showToast(response.body().toString(), this@CheckPostActivity)
+                            val intent = Intent(this@CheckPostActivity, MainBoardActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+                    }
+                })
+            }
+            builder.setNegativeButton("취소") {dialog, id ->
+                dialog.dismiss()
+            }
+
+            builder.show()
+
+        }
         //툴바- 메뉴 클릭 등록
         ic_toolbar_menu_check_post.setOnClickListener {
-            //drawerL_checkPost.openDrawer(GravityCompat.START)
+            drawerL_checkPost.openDrawer(GravityCompat.START)
         }
 
         //드로워 네비게이션 뷰 등록
@@ -77,10 +105,12 @@ class CheckPostActivity : BaseActivity_noMVP() {
                 R.id.menu_main_nav_myPage ->{
                     val intentMyPage = Intent(this, MyPageExpActivity::class.java)
                     startActivity(intentMyPage)
+                    finish()
                 }
                 R.id.menu_main_nav_counselList ->{
                     val intentCounselList = Intent(this, CounselManagingActivity::class.java)
                     startActivity(intentCounselList)
+                    finish()
                 }
                 R.id.menu_main_nav_bookmark -> showToast("즐겨찾기 클릭",this)
                 R.id.menu_main_nav_logOut -> showToast("로그아웃 클릭",this)
@@ -111,11 +141,41 @@ class CheckPostActivity : BaseActivity_noMVP() {
 
     }
 
-    override fun onBackPressed() {
-//        if(drawerL_checkPost.isDrawerOpen(GravityCompat.START)){
-//            drawerL_checkPost.closeDrawers()
-//        }else{
-//            super.onBackPressed()
-//        }
+    override fun onStart() {
+        super.onStart()
+        // 데이터 불러오기
+        val call = service.getPost(_id)
+        call.enqueue(object : Callback<Post>{
+            override fun onFailure(call: Call<Post>, t: Throwable) {
+                Log.d(TAG,"onFailure: ${t.message}")
+                showToast(t.message.toString(), this@CheckPostActivity);
+            }
+            override fun onResponse(call: Call<Post>, response: Response<Post>) {
+                if(response.code()==200){
+                    post = response.body()!!
+                    text_checkPost_title.text = post.title
+                    text_checkPost_content.text = post.content
+                    text_checkPost_hit_like_comments.text = "조회 ${post.hit} | 격려 ${post.like} | 댓글 ${post.comments}"
+                    text_checkPost_commenter_date_lastChanged.text = "${post.commenter} | ${post.date_lastChanged}"
+                    //Log.d(TAG,"onResponse: 성공")
+                    //view.showToast(response.body().toString())
+                }
+            }
+        })
     }
+    /*
+ * 뒤로가기 버튼으로 네비게이션 닫기
+ *
+ * 네비게이션 드로어가 열려 있을 때 뒤로가기 버튼을 누르면 네비게이션을 닫고,
+ * 닫혀 있다면 기존 뒤로가기 버튼으로 작동한다.
+ */
+    override fun onBackPressed() {
+        if(drawerL_checkPost.isDrawerOpen(GravityCompat.START)){
+            drawerL_checkPost.closeDrawers()
+        }else{
+            super.onBackPressed()
+        }
+    }
+
+
 }

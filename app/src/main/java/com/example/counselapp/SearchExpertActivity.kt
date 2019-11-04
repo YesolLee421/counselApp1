@@ -4,11 +4,13 @@ import android.content.Intent
 
 import android.os.Bundle
 import android.service.autofill.UserData
+import android.view.Gravity
 
 import android.view.View
 import android.widget.BaseAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.counselapp.R.layout.activity_search_expert
@@ -106,17 +108,12 @@ class SearchExpertActivity : BaseActivity(), MainboardContract.View {
 
     }
 
-    /*
-     * 뒤로가기 버튼으로 네비게이션 닫기
-     *
-     * 네비게이션 드로어가 열려 있을 때 뒤로가기 버튼을 누르면 네비게이션을 닫고,
-     * 닫혀 있다면 기존 뒤로가기 버튼으로 작동한다.
-     */
     override fun onBackPressed() {
-//        if(drawerL_searchExp.isDrawerOpen(GravityCompat.START)){
-//            drawerL_searchExp.closeDrawers()
-//        }else{
-//            super.onBackPressed()
-//        }
+        if(drawerL_searchExp.isDrawerOpen(GravityCompat.START)){
+            drawerL_searchExp.closeDrawers()
+        }else{
+            super.onBackPressed()
+        }
     }
+
 }
