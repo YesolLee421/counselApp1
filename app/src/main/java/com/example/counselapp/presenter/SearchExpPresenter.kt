@@ -1,14 +1,24 @@
 package com.example.counselapp.presenter
 
 import android.content.Context
+import android.util.Log
 import com.example.counselapp.adapter.MainAdapterContract
 import com.example.counselapp.adapter.SearchExpertAdapterContract
+import com.example.counselapp.model.Post
 import com.example.counselapp.model.User
 import com.example.counselapp.model.UserList
+import com.example.counselapp.retrofit.CounselAppService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SearchExpPresenter: SearchExpContract.Presenter {
+    var TAG = "SearchExpPresenter"
+
+    override lateinit var presenterService: CounselAppService
+    override lateinit var userList: List<User>
     override lateinit var view: MainboardContract.View
-    //override var userList: ArrayList<User> = UserList.getUserList()
+
     override lateinit var adapterModel: SearchExpertAdapterContract.Model
     override var adapterView: MainAdapterContract.View? = null
         set(value) {
@@ -18,6 +28,8 @@ class SearchExpPresenter: SearchExpContract.Presenter {
     private fun onClickListener(position: Int){
         adapterModel.getItem(position).let {
             view.showToast(it.name)
+            Log.d(TAG, it.name)
+            view.moveTo(it._id)
         }
     }
 
@@ -25,18 +37,26 @@ class SearchExpPresenter: SearchExpContract.Presenter {
     var USER_EXPERT :Int = 1
 
     override fun loadItems(context: Context, isClear: Boolean) {
-//        userList.let {
-//            if(isClear){
-//                adapterModel.clearItems()
-//            }
-//            // 상담사인 것만 추가하기: 일반 사용자 삭제
-//            for(i in userList.size until 0){
-//                if(userList[i].type==USER_NORMAL){
-//                    userList.removeAt(i) // arraylist에서 삭제할 때 인덱스 주의
-//                }
-//            }
-//            adapterModel.addItems(it)
-//            adapterView?.notifyAdapter()
-//        }
+        val call = presenterService.getAllExperts()
+        call.enqueue(object : Callback<List<User>> {
+            override fun onFailure(call: Call<List<User>>, t: Throwable) {
+                Log.d(TAG,"onFailure: ${t.message}")
+                view.showToast(t.message.toString());
+            }
+            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+                if(response.code()==200){
+                    userList = response.body()!!
+                    userList.let {
+                        if(isClear){
+                            adapterModel.clearItems()
+                        }
+                        adapterModel.addItems(it)
+                        adapterView?.notifyAdapter() // presenter에서 어댑터 직접 접근, view, model 접근
+                    }
+                    Log.d(TAG,"onResponse: 성공")
+                    //view.showToast(response.body().toString())
+                }
+            }
+        })
     }
 }

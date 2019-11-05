@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.counselapp.adapter.MainAdapterContract
 import com.example.counselapp.adapter.SearchExpertAdapterContract
 import com.example.counselapp.model.User
+import com.example.counselapp.retrofit.CounselAppService
 
 interface SearchExpContract {
     // interface View는 MainContract꺼 사용
@@ -15,5 +16,10 @@ interface SearchExpContract {
         var adapterView: MainAdapterContract.View?
 
         fun loadItems(context: Context, isClear: Boolean)
+
+        var presenterService: CounselAppService
+        var userList: List<User>
+        // takeView(), dropView() : BasePresenter에 있음
+
     }
 }

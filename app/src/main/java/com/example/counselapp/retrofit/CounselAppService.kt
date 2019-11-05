@@ -50,6 +50,17 @@ interface CounselAppService {
     @DELETE("/posts/{id}")
     fun deletePost(@Path("id") id: String): Call<String>
 
+    //-----------------------------------------------------------------
+    // 회원 정보 관련
+    // 모든 상담사 목록 보기
+    @GET("/users/experts")
+    fun getAllExperts(): Call<List<User>>
+
+    // 개별 회원 정보 보기
+    @GET("/users/{id}")
+    fun getUser(@Path("id") id : String): Call<User>
+
+
 
 
 }

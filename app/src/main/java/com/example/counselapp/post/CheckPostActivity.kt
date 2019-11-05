@@ -89,9 +89,7 @@ class CheckPostActivity : BaseActivity_noMVP() {
             builder.setNegativeButton("취소") {dialog, id ->
                 dialog.dismiss()
             }
-
             builder.show()
-
         }
         //툴바- 메뉴 클릭 등록
         ic_toolbar_menu_check_post.setOnClickListener {

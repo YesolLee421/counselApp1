@@ -10,10 +10,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainboardPresenter :MainboardContract.Presenter{
-
-    override lateinit var view: MainboardContract.View
-
     var TAG = "LoginPresenter"
+    override lateinit var view: MainboardContract.View
     override lateinit var presenterService: CounselAppService
 
     // 여기서 선언하기 때문에 takeView(), dropView()필요없음
@@ -28,12 +26,9 @@ class MainboardPresenter :MainboardContract.Presenter{
         adapterModel.getItem(position).let {
             view.showToast(it.title)
             Log.d(TAG,it._id)
-            view.moveToPost(it._id)
+            view.moveTo(it._id)
         }
     }
-
-
-
 
     override lateinit var postList: List<Post>
     
@@ -59,13 +54,5 @@ class MainboardPresenter :MainboardContract.Presenter{
                 }
             }
         })
-//        postList.let {
-//            if(isClear){
-//                adapterModel.clearItems()
-//            }
-//            adapterModel.addItems(it)
-//            adapterView?.notifyAdapter() // presenter에서 어댑터 직접 접근, view, model 접근
-//        }
-
     }
 }

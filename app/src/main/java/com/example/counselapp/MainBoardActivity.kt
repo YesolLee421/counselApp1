@@ -3,7 +3,6 @@ package com.example.counselapp
 import android.content.Intent
 
 import android.os.Bundle
-import android.util.Log
 
 import android.view.View
 import android.widget.Toast
@@ -13,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.counselapp.R.id.*
 import com.example.counselapp.base.BaseActivity
 import com.example.counselapp.counselList.CounselManagingActivity
-import com.example.counselapp.model.Post
-import com.example.counselapp.model.PostList
 import com.example.counselapp.myPage.MyPageExpActivity
 import com.example.counselapp.post.WritePostActivity
 import com.example.counselapp.presenter.MainboardContract
@@ -28,20 +25,17 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
 import kotlinx.android.synthetic.main.activity_mainboard.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.Retrofit
 
 class MainBoardActivity : BaseActivity() , MainboardContract.View{
-    override fun moveToPost(_id: String) {
+    override fun moveTo(_id: String) {
         val intent = Intent(this, CheckPostActivity::class.java)
         intent.putExtra("postId",_id)
         startActivity(intent)
     }
 
-    override fun showToast(title: String) {
-        Toast.makeText(this,"$title 클릭함",Toast.LENGTH_SHORT).show()
+    override fun showToast(message: String) {
+        Toast.makeText(this,"$message 클릭함",Toast.LENGTH_SHORT).show()
     }
     // 일대일 연결할 프레젠터 선언
     // 리사이클러뷰, 레이아웃매니저, 데이터리스트 등
@@ -66,7 +60,6 @@ class MainBoardActivity : BaseActivity() , MainboardContract.View{
         presenter = MainboardPresenter().apply{
             view = this@MainBoardActivity
             presenterService = service
-            //postData = PostList.getPostList(PostList.postData.size)
             adapterModel = adapter
             adapterView = adapter
         }

@@ -27,7 +27,7 @@
                 <ImageView
                         android:background="@android:color/transparent"
                         android:id="@+id/ic_toolbar_logo"
-                        android:layout_width="317dp" android:layout_height="50dp"
+                        android:layout_width="0dp" android:layout_height="50dp"
                         android:layout_weight="1"
                         android:src="@drawable/imfine_white"
                         android:layout_gravity="center_horizontal"/>
@@ -44,10 +44,10 @@
 
         <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1"
         >
-            <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                           android:orientation="vertical" >
                 <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/return_icon"/>
                 <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
@@ -60,7 +60,7 @@
                             android:src="@drawable/homer1" android:id="@+id/img_profile_expert"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                               android:text="호머 심슨 상담사"
-                              android:textSize="17dp"
+                              android:textSize="17sp"
                               android:textColor="@android:color/black"
                               app:layout_constraintStart_toEndOf="@+id/img_profile_expert"
                               app:layout_constraintTop_toTopOf="parent"
@@ -97,7 +97,7 @@
         </ScrollView>
 
 
-        <android.support.design.widget.BottomNavigationView
+        <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_nav_profile_expert"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -106,14 +106,14 @@
                 app:itemIconTint="@android:color/background_light"
                 app:itemTextColor="@android:color/background_light">
 
-        </android.support.design.widget.BottomNavigationView>
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
 
 
     </LinearLayout>
 
-    <android.support.design.widget.NavigationView
+    <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigation_profile_expert"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

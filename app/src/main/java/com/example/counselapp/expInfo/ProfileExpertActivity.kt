@@ -3,24 +3,52 @@ package com.example.counselapp.expInfo
 import android.content.Intent
 
 import android.os.Bundle
+import android.util.Log
 
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import com.example.counselapp.counselList.CounselManagingActivity
 import com.example.counselapp.MainBoardActivity
 import com.example.counselapp.myPage.MyPageExpActivity
 import com.example.counselapp.R
 import com.example.counselapp.SearchExpertActivity
+import com.example.counselapp.base.BaseActivity_noMVP
+import com.example.counselapp.model.Post
+import com.example.counselapp.model.User
+import com.example.counselapp.retrofit.CounselAppService
+import com.example.counselapp.retrofit.RetrofitClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.activity_checkpost.*
 import kotlinx.android.synthetic.main.activity_profile_expert.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
 
-class ProfileExpertActivity : AppCompatActivity() {
+class ProfileExpertActivity : BaseActivity_noMVP() {
+
+    var TAG = "ProfileExpertActivity"
+
+    // retrofitClient, service 객체 생성
+    val retrofitClient: Retrofit = RetrofitClient.instance
+    lateinit var service: CounselAppService
+    lateinit var user: User
+    lateinit var userid: String
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_expert)
+
+        // 인텐트로 전달한 _id
+        userid = intent.getStringExtra("userid")
+        getLog(TAG,userid)
+
+        // 서비스 시작
+        service = retrofitClient.create(CounselAppService::class.java)
 
         //드로워 네비게이션 뷰 등록
         val drawerNav = findViewById<View>(R.id.navigation_profile_expert) as NavigationView
@@ -43,7 +71,7 @@ class ProfileExpertActivity : AppCompatActivity() {
 
         //툴바- 메뉴 클릭 등록
         ic_toolbar_menu.setOnClickListener {
-            //drawerL_profile_expert.openDrawer(GravityCompat.START)
+            drawerL_profile_expert.openDrawer(GravityCompat.START)
         }
 
         //하단 네비게이션뷰 등록
@@ -67,11 +95,31 @@ class ProfileExpertActivity : AppCompatActivity() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        // 데이터 불러오기
+        val call = service.getUser(userid)
+        call.enqueue(object : Callback<User> {
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                Log.d(TAG,"onFailure: ${t.message}")
+                showToast(t.message.toString(), this@ProfileExpertActivity);
+            }
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                if(response.code()==200){
+                    user = response.body()!!
+                    text_profile_expert_name.text = "${user.name} 상담사"
+                    Log.d(TAG,"onResponse: 성공")
+                    //view.showToast(response.body().toString())
+                }
+            }
+        })
+    }
+
     override fun onBackPressed() {
-//        if(drawerL_profile_expert.isDrawerOpen(GravityCompat.START)){
-//            drawerL_profile_expert.closeDrawers()
-//        }else{
-//            super.onBackPressed()
-//        }
+        if(drawerL_profile_expert.isDrawerOpen(GravityCompat.START)){
+            drawerL_profile_expert.closeDrawers()
+        }else{
+            super.onBackPressed()
+        }
     }
 }

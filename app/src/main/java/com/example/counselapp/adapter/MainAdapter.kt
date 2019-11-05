@@ -36,8 +36,6 @@ class MainAdapter(val context: Context) : RecyclerView.Adapter<MainViewHolder>()
     }
     override fun getItemCount(): Int = if(postList!=null) postList!!.size else 0
 
-    override fun clearItems() {
-
-    }
+    override fun clearItems() {}
 
 }
