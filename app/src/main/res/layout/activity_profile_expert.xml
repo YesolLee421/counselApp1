@@ -41,58 +41,140 @@
             </LinearLayout>
 
         </androidx.appcompat.widget.Toolbar>
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/return_icon"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                           android:layout_height="wrap_content" android:layout_margin="8dp">
+            <ImageView
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/homer1" android:id="@+id/img_profile_expert"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="호머 심슨 상담사"
+                      android:textSize="17sp"
+                      android:textColor="@android:color/black"
+                      app:layout_constraintStart_toEndOf="@+id/img_profile_expert"
+                      app:layout_constraintTop_toTopOf="parent"
+                      android:id="@+id/text_profile_expert_name"
+                      app:layout_constraintBottom_toTopOf="@+id/text_profile_expert_about"/>
+            <TextView android:id="@+id/text_profile_expert_about"
+                      android:layout_marginVertical="8dp"
+                      android:textColor="@android:color/black"
+                      android:text="꽃이 없으면 쓸쓸한 인간에 남는 것은 영락과 부패 뿐이다 낙원을 장식하는 천자만홍이 어디 있으며 인생을 "
+                      android:layout_width="0dp" android:layout_height="wrap_content"
+                      app:layout_constraintStart_toEndOf="@+id/img_profile_expert"
+                      app:layout_constraintBottom_toBottomOf="parent"
+                      app:layout_constraintEnd_toEndOf="parent"
+                      app:layout_constraintTop_toBottomOf="@+id/text_profile_expert_name"
+                      app:layout_constraintHorizontal_bias="0.5"/>
+
+            <ImageView
+                    android:id="@+id/img_profile_expert_lv"
+                    android:src="@drawable/lv1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/text_profile_expert_about"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-        >
+                android:layout_weight="1">
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                           android:orientation="vertical" >
-                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/return_icon"/>
-                <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
-                                                             android:layout_height="wrap_content">
-                    <ImageView
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
-                            android:src="@drawable/homer1" android:id="@+id/img_profile_expert"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                              android:text="호머 심슨 상담사"
-                              android:textSize="17sp"
-                              android:textColor="@android:color/black"
-                              app:layout_constraintStart_toEndOf="@+id/img_profile_expert"
-                              app:layout_constraintTop_toTopOf="parent"
-                              android:id="@+id/text_profile_expert_name"
-                              app:layout_constraintBottom_toTopOf="@+id/text_profile_expert_about"/>
-                    <TextView android:id="@+id/text_profile_expert_about"
-                              android:layout_marginVertical="8dp"
-                              android:textColor="@android:color/black"
-                              android:text="꽃이 없으면 쓸쓸한 인간에 남는 것은 영락과 부패 뿐이다 낙원을 장식하는 천자만홍이 어디 있으며 인생을 "
-                              android:layout_width="0dp" android:layout_height="wrap_content"
-                              app:layout_constraintStart_toEndOf="@+id/img_profile_expert"
-                              app:layout_constraintBottom_toBottomOf="parent"
-                              app:layout_constraintEnd_toEndOf="parent"
-                              app:layout_constraintTop_toBottomOf="@+id/text_profile_expert_name"
-                              app:layout_constraintHorizontal_bias="0.5"/>
 
-                    <ToggleButton
+                <TableLayout android:padding="8dp" android:layout_width="match_parent" android:layout_height="wrap_content">
 
-                            android:background="@drawable/heart_empty_red"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
+                    <TableRow>
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="학력"
+                                android:textSize="20sp"
+                                android:gravity="center"
+                                android:padding="8dp"
+                                android:textColor="@android:color/black"/>
 
+                        <TextView
+                                android:layout_weight="1"
+                                android:id="@+id/text_profile_expert_education"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:gravity="center"
+                                android:textColor="@android:color/black"/>
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="자격증"
+                                android:textSize="20sp"
+                                android:gravity="center"
+                                android:padding="8dp"
+                                android:textColor="@android:color/black"/>
 
-                <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="스크롤뷰 내용 - 탭 - 프레임레이아웃 - 프레그먼트?"
-                        android:textColor="@android:color/black"/>
+                        <TextView
+                                android:layout_weight="1"
+                                android:id="@+id/text_profile_expert_certificate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:gravity="center"
+                                android:textColor="@android:color/black"/>
+
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="경력"
+                                android:textSize="20sp"
+                                android:gravity="center"
+                                android:padding="8dp"
+                                android:textColor="@android:color/black"/>
+
+                        <TextView
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/text_profile_expert_career"
+                                android:gravity="center"
+                                android:textColor="@android:color/black"/>
+
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="연구분야"
+                               android:textSize="20sp"
+                                android:gravity="center"
+                                android:padding="8dp"
+                                android:textColor="@android:color/black"/>
+
+                        <TextView
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/text_profile_expert_major"
+                                android:gravity="center"
+                                android:padding="8dp"
+                                android:textColor="@android:color/black"/>
+
+                    </TableRow>
+
+                </TableLayout>
             </LinearLayout>
         </ScrollView>
 

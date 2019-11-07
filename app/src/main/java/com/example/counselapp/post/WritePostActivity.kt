@@ -34,11 +34,6 @@ class WritePostActivity : BaseActivity_noMVP() {
     lateinit var service: CounselAppService
     lateinit var post: Post
 
-
-
-    // String -> editable로 바꾸는 함수
-    fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_write_post)

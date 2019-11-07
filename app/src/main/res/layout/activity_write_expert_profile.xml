@@ -13,106 +13,27 @@
             android:background="@color/main"
             android:theme="?attr/actionBarTheme"
             android:minHeight="?attr/actionBarSize" android:id="@+id/toolbar_mainB">
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="마이페이지"/>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="마이페이지 수정"/>
 
     </androidx.appcompat.widget.Toolbar>
 
 
     <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
     >
-        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                       android:orientation="vertical" android:layout_gravity="center_horizontal" android:padding="8dp">
 
-            <TextView android:paddingVertical="8dp" android:textSize="20sp" android:gravity="center" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="리사리사(닉네임 혹은 실명)"/>
+            <EditText android:id="@+id/et_writeExpert_name_formal" android:paddingVertical="8dp" android:textSize="20sp" android:gravity="center" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="실명 입력"/>
 
             <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:src="@drawable/homer1" android:id="@+id/img_profile_expert"/>
-            <TextView android:paddingVertical="8dp" android:textColor="@android:color/holo_green_dark" android:gravity="center" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="전문 상담사 인증 완료"/>
-
+            <Button android:id="@+id/btn_writeExpert_selectImg" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="프로필 사진 선택"/>
             <TableLayout android:padding="8dp" android:layout_width="match_parent" android:layout_height="wrap_content">
-                <TableRow>
-                    <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="주요 키워드"
-                            android:textSize="20sp"
-                            android:gravity="center"
-                            android:padding="8dp"
-                            android:textColor="@android:color/black"/>
-
-                    <TextView
-                            android:layout_width="match_parent"
-                            android:maxWidth="270dp"
-                            android:layout_height="wrap_content"
-                            android:text="#대인관계 #우울 #강박 #취업 #진로 #무기력 #청소년 #진로"
-                            android:padding="8dp"
-                            android:gravity="center"
-                            android:textColor="@android:color/black"/>
-                </TableRow>
-
-                <TableRow>
-                    <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="학력"
-                            android:textSize="20sp"
-                            android:gravity="center"
-                            android:padding="8dp"
-                            android:textColor="@android:color/black"/>
-
-                    <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="2013 00대학교 심리학과 학부 졸업\n2015 00대학원 상담전공 석사 졸업\n..."
-                            android:padding="8dp"
-                            android:gravity="center"
-                            android:textColor="@android:color/black"/>
-
-                </TableRow>
-                <TableRow>
-                    <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="자격증"
-                            android:textSize="20sp"
-                            android:gravity="center"
-                            android:padding="8dp"
-                            android:textColor="@android:color/black"/>
-
-                    <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="임상심리사 2급\n상담심리사2급\n청소년심리상담사 1급"
-                            android:padding="8dp"
-                            android:gravity="center"
-                            android:textColor="@android:color/black"/>
-
-                </TableRow>
-                <TableRow>
-                    <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="경력"
-                            android:textSize="20sp"
-                            android:gravity="center"
-                            android:padding="8dp"
-                            android:textColor="@android:color/black"/>
-
-                    <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="2012~2013 00병원 임상 실습\n2013~2015 00정신건강센터 상담사\n2016~현재 00병원 임상심리사 근무 중"
-                            android:padding="8dp"
-                            android:gravity="center"
-                            android:textColor="@android:color/black"/>
-
-                </TableRow>
-
                 <TableRow>
                     <TextView
                             android:layout_width="match_parent"
@@ -123,55 +44,119 @@
                             android:padding="8dp"
                             android:textColor="@android:color/black"/>
 
-                    <TextView
-                            android:maxWidth="270dp"
+                    <EditText
+                            android:id="@+id/et_writeExpert_about"
+                            android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="누구의 마음 속에나 잘 해보고 싶은 마음은 있습니다. 사랑하고 싶지 않은 게 아니라, 미워하고 싶은 게 아니라 방법을 몰라서 그렇습니다."
                             android:padding="8dp"
                             android:gravity="center"
                             android:textColor="@android:color/black"/>
-
                 </TableRow>
+
                 <TableRow>
                     <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="내가 쓴 글"
+                            android:text="소속"
                             android:textSize="20sp"
                             android:gravity="center"
                             android:padding="8dp"
                             android:textColor="@android:color/black"/>
 
+                    <EditText
+                            android:id="@+id/et_writeExpert_belongTo"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="53dp"
+                            android:padding="8dp"
+                            android:gravity="center"
+                            android:textColor="@android:color/black"/>
+                </TableRow>
+
+                <TableRow>
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="학력"
+                        android:textSize="20sp"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:textColor="@android:color/black"/>
+
+                <EditText
+                        android:id="@+id/et_writeExpert_education"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"/>
+            </TableRow>
+                <TableRow>
                     <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="포스트 17 / 댓글 35"
+                            android:text="경력"
+                            android:textSize="20sp"
                             android:gravity="center"
                             android:padding="8dp"
                             android:textColor="@android:color/black"/>
 
+                    <EditText
+                            android:id="@+id/et_writeExpert_career"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:gravity="center"
+                            android:textColor="@android:color/black"/>
+                </TableRow>
+                <TableRow>
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="자격사항"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:padding="8dp"
+                            android:textColor="@android:color/black"/>
+
+                    <EditText
+                            android:id="@+id/et_writeExpert_certificate"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:gravity="center"
+                            android:textColor="@android:color/black"/>
+                </TableRow>
+                <TableRow>
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="연구분야"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:padding="8dp"
+                            android:textColor="@android:color/black"/>
+
+                    <EditText
+                            android:id="@+id/et_writeExpert_major"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:gravity="center"
+                            android:textColor="@android:color/black"/>
                 </TableRow>
 
             </TableLayout>
 
-
-
-
         </LinearLayout>
     </ScrollView>
 
-    <Button android:id="@+id/btn_myPage_edit" android:layout_margin="8dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="수정하기"/>
+    <Button android:id="@+id/btn_writeExpert_save" android:layout_margin="8dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="확인"/>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_nav_mainB"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/calmblue"
-            app:menu="@menu/menu_bottombar"
-            app:itemIconTint="@android:color/background_light"
-            app:itemTextColor="@android:color/background_light">
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </LinearLayout>

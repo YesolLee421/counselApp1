@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.counselapp.R
+import com.example.counselapp.model.Expert
 import com.example.counselapp.model.User
 
 class SearchExpViewHolder(val context: Context, parent: ViewGroup?, val onClicFunc : ((Int)->Unit)?)
@@ -28,10 +29,15 @@ class SearchExpViewHolder(val context: Context, parent: ViewGroup?, val onClicFu
     private val textBelongTo by lazy {
         itemView.findViewById(R.id.item_searchExp_belongTo) as TextView
     }
-    fun onBind(item: User, position: Int){
-        textName.text = item.name
-//        textDescription.text = item.description
-//        textBelongTo.text = item.belongTo
+    fun onBind(item: Expert, position: Int){
+        textName.text = item.name_formal
+        textDescription.text = item.about
+        textBelongTo.text = item.belongTo
+        when(item.level){
+            1-> imgHeart.setImageResource(R.drawable.lv1)
+            2->imgHeart.setImageResource(R.drawable.lv2)
+            3->imgHeart.setImageResource(R.drawable.lv3)
+        }
 
         itemView.setOnClickListener { onClicFunc?.invoke(position) }
     }

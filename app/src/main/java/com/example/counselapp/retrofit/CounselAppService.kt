@@ -1,5 +1,6 @@
 package com.example.counselapp.retrofit
 
+import com.example.counselapp.model.Expert
 import com.example.counselapp.model.Post
 import com.example.counselapp.model.User
 import io.reactivex.Observable
@@ -54,13 +55,25 @@ interface CounselAppService {
     // 회원 정보 관련
     // 모든 상담사 목록 보기
     @GET("/users/experts")
-    fun getAllExperts(): Call<List<User>>
+    fun getAllExperts(): Call<List<Expert>>
 
     // 개별 회원 정보 보기
     @GET("/users/{id}")
     fun getUser(@Path("id") id : String): Call<User>
 
+    // 상담사 정보 보기
+    @GET("/users/{id}/expert")
+    fun getExpert(@Path("id") id : String): Call<Expert>
 
-
-
+    // 상담사 정보 입력
+    @PUT("/users/{uid}/expert")
+    @FormUrlEncoded
+    fun updateExpert(@Path("uid") uid: String,
+                       @Field("name_formal") name_formal: String,
+                     @Field("about") about: String?,
+                     @Field("belongTo") belongTo: String?,
+                     @Field("education") education: String?,
+                       @Field("career") career: String?,
+                       @Field("certificate") certificate: String?,
+                     @Field("major") major: String?): Call<String>
 }

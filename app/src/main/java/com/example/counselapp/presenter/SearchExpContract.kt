@@ -3,6 +3,7 @@ package com.example.counselapp.presenter
 import android.content.Context
 import com.example.counselapp.adapter.MainAdapterContract
 import com.example.counselapp.adapter.SearchExpertAdapterContract
+import com.example.counselapp.model.Expert
 import com.example.counselapp.model.User
 import com.example.counselapp.retrofit.CounselAppService
 
@@ -18,7 +19,7 @@ interface SearchExpContract {
         fun loadItems(context: Context, isClear: Boolean)
 
         var presenterService: CounselAppService
-        var userList: List<User>
+        var expertList: List<Expert>
         // takeView(), dropView() : BasePresenter에 있음
 
     }

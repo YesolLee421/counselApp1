@@ -28,7 +28,7 @@ import retrofit2.Retrofit
 class SearchExpertActivity : BaseActivity(), MainboardContract.View {
     override fun moveTo(_id: String) {
         val intentExp = Intent(this,ProfileExpertActivity::class.java)
-        intentExp.putExtra("userid", _id)
+        intentExp.putExtra("expertId", _id)
         startActivity(intentExp)
     }
 

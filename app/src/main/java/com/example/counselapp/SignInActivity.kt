@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.counselapp.base.BaseActivity_noMVP
+import com.example.counselapp.expInfo.WriteExpertProfileActivity
 import com.example.counselapp.retrofit.CounselAppService
 import com.example.counselapp.retrofit.RetrofitClient
 import kotlinx.android.synthetic.main.activity_signin.*
@@ -22,6 +23,8 @@ class SignInActivity : BaseActivity_noMVP() {
     // 서비스 선언
     val retrofitClient: Retrofit = RetrofitClient.instance
     val service = retrofitClient.create(CounselAppService::class.java)
+
+
 
     fun goLogIn(){
         val logInIntent = Intent(this, LogInActivity::class.java)
@@ -64,6 +67,9 @@ class SignInActivity : BaseActivity_noMVP() {
             // type: 1 = 일반사용자, 2 = 전문상담가
 
             registerUser(email,password,nickname, type)
+
+
+
         }
     }
 
@@ -81,7 +87,17 @@ class SignInActivity : BaseActivity_noMVP() {
                 Log.d(TAG,"onResponse: ${response.body()}")
                 showToast(response.body()!!,this@SignInActivity)
                 if(response.code()==201){ // 새로운 유저 객체 생성 시만 이동
-                    goLogIn()
+                    showToast("response.body = ${response.body()}",this@SignInActivity)
+                    if(type==1){
+                        goLogIn()
+                    }else{
+                        val expertIntent = Intent(this@SignInActivity, WriteExpertProfileActivity::class.java)
+                        expertIntent.putExtra("expertId",response.body().toString())
+                        expertIntent.putExtra("isFirst", true)
+                        startActivity(expertIntent)
+                        finish()
+                    }
+
                 }
             }
         })

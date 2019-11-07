@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.example.counselapp.adapter.MainAdapterContract
 import com.example.counselapp.adapter.SearchExpertAdapterContract
+import com.example.counselapp.model.Expert
 import com.example.counselapp.model.Post
 import com.example.counselapp.model.User
 import com.example.counselapp.model.UserList
@@ -16,7 +17,7 @@ class SearchExpPresenter: SearchExpContract.Presenter {
     var TAG = "SearchExpPresenter"
 
     override lateinit var presenterService: CounselAppService
-    override lateinit var userList: List<User>
+    override lateinit var expertList: List<Expert>
     override lateinit var view: MainboardContract.View
 
     override lateinit var adapterModel: SearchExpertAdapterContract.Model
@@ -27,8 +28,8 @@ class SearchExpPresenter: SearchExpContract.Presenter {
         }
     private fun onClickListener(position: Int){
         adapterModel.getItem(position).let {
-            view.showToast(it.name)
-            Log.d(TAG, it.name)
+            view.showToast(it.name_formal)
+            Log.d(TAG, it.name_formal)
             view.moveTo(it._id)
         }
     }
@@ -38,15 +39,15 @@ class SearchExpPresenter: SearchExpContract.Presenter {
 
     override fun loadItems(context: Context, isClear: Boolean) {
         val call = presenterService.getAllExperts()
-        call.enqueue(object : Callback<List<User>> {
-            override fun onFailure(call: Call<List<User>>, t: Throwable) {
+        call.enqueue(object : Callback<List<Expert>> {
+            override fun onFailure(call: Call<List<Expert>>, t: Throwable) {
                 Log.d(TAG,"onFailure: ${t.message}")
                 view.showToast(t.message.toString());
             }
-            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+            override fun onResponse(call: Call<List<Expert>>, response: Response<List<Expert>>) {
                 if(response.code()==200){
-                    userList = response.body()!!
-                    userList.let {
+                    expertList = response.body()!!
+                    expertList.let {
                         if(isClear){
                             adapterModel.clearItems()
                         }

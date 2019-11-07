@@ -59,6 +59,7 @@ class CheckPostActivity : BaseActivity_noMVP() {
             intentUpdate.putExtra("content", text_checkPost_content.text.toString())
             getLog(TAG, intentUpdate.getStringExtra("title"))
             startActivity(intentUpdate)
+            finish()
         }
 
         // 삭제 버튼 클릭
@@ -79,8 +80,8 @@ class CheckPostActivity : BaseActivity_noMVP() {
                         if(response.code()==200){
                             Log.d(TAG,"onResponse: 성공")
                             showToast(response.body().toString(), this@CheckPostActivity)
-                            val intent = Intent(this@CheckPostActivity, MainBoardActivity::class.java)
-                            startActivity(intent)
+//                            val intent = Intent(this@CheckPostActivity, MainBoardActivity::class.java)
+//                            startActivity(intent)
                             finish()
                         }
                     }

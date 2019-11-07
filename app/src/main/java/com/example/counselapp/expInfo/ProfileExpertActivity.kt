@@ -15,6 +15,7 @@ import com.example.counselapp.myPage.MyPageExpActivity
 import com.example.counselapp.R
 import com.example.counselapp.SearchExpertActivity
 import com.example.counselapp.base.BaseActivity_noMVP
+import com.example.counselapp.model.Expert
 import com.example.counselapp.model.Post
 import com.example.counselapp.model.User
 import com.example.counselapp.retrofit.CounselAppService
@@ -35,8 +36,8 @@ class ProfileExpertActivity : BaseActivity_noMVP() {
     // retrofitClient, service 객체 생성
     val retrofitClient: Retrofit = RetrofitClient.instance
     lateinit var service: CounselAppService
-    lateinit var user: User
-    lateinit var userid: String
+    lateinit var expert: Expert
+    var expertId: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,8 +45,8 @@ class ProfileExpertActivity : BaseActivity_noMVP() {
         setContentView(R.layout.activity_profile_expert)
 
         // 인텐트로 전달한 _id
-        userid = intent.getStringExtra("userid")
-        getLog(TAG,userid)
+        expertId = intent.getStringExtra("expertId")
+        getLog(TAG,expertId!!)
 
         // 서비스 시작
         service = retrofitClient.create(CounselAppService::class.java)
@@ -98,16 +99,27 @@ class ProfileExpertActivity : BaseActivity_noMVP() {
     override fun onStart() {
         super.onStart()
         // 데이터 불러오기
-        val call = service.getUser(userid)
-        call.enqueue(object : Callback<User> {
-            override fun onFailure(call: Call<User>, t: Throwable) {
+        val call = service.getExpert(expertId!!)
+        call.enqueue(object : Callback<Expert> {
+            override fun onFailure(call: Call<Expert>, t: Throwable) {
                 Log.d(TAG,"onFailure: ${t.message}")
                 showToast(t.message.toString(), this@ProfileExpertActivity);
             }
-            override fun onResponse(call: Call<User>, response: Response<User>) {
+            override fun onResponse(call: Call<Expert>, response: Response<Expert>) {
                 if(response.code()==200){
-                    user = response.body()!!
-                    text_profile_expert_name.text = "${user.name} 상담사"
+                    expert= response.body()!!
+                    text_profile_expert_name.text = "${expert.name_formal} 상담사"
+                    text_profile_expert_about.text = expert.about
+                    text_profile_expert_career.text = expert.career
+                    text_profile_expert_certificate.text = expert.certificate
+                    text_profile_expert_education.text = expert.education
+                    text_profile_expert_major.text = expert.major
+                    showToast("level: ${expert.level}",this@ProfileExpertActivity)
+                    when(expert.level){
+                        1-> img_profile_expert_lv.setImageResource(R.drawable.lv1)
+                        2->img_profile_expert_lv.setImageResource(R.drawable.lv2)
+                        3->img_profile_expert_lv.setImageResource(R.drawable.lv3)
+                    }
                     Log.d(TAG,"onResponse: 성공")
                     //view.showToast(response.body().toString())
                 }
