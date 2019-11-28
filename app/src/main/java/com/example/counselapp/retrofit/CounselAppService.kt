@@ -33,7 +33,7 @@ interface CounselAppService {
     @GET("/posts/{id}")
     fun getPost(@Path("id") id : String): Call<Post>
 
-    // 새 게시물 생성
+    // 새 게시물 생성: 사진 경로(multipart)
     @POST("/posts")
     @FormUrlEncoded
     fun writePost(@Field("commenter") commenter: String,
@@ -65,7 +65,7 @@ interface CounselAppService {
     @GET("/users/{id}/expert")
     fun getExpert(@Path("id") id : String): Call<Expert>
 
-    // 상담사 정보 입력
+    // 상담사 정보 입력: 프로필 사진 업로드 넣기(multipart)
     @PUT("/users/{uid}/expert")
     @FormUrlEncoded
     fun updateExpert(@Path("uid") uid: String,

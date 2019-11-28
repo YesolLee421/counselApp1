@@ -3,6 +3,7 @@ import com.google.gson.annotations.SerializedName
 
 import java.util.*
 
+// 게시물 사진 경로 포함: 여러 장 넣으려면?
 data class Post (
     @SerializedName("_id") val _id: String,
     @SerializedName("userid") val userid: String?,
