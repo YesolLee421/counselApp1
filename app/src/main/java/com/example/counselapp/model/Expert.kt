@@ -12,6 +12,7 @@ data class Expert (
     val career: String?,
     val major : String?,
     val isValidated :Boolean,
-    val level: Int
+    val level: Int,
+    val portrait: String? // 프로필 사진
 )
 

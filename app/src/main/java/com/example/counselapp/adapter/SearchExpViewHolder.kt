@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.counselapp.R
 import com.example.counselapp.model.Expert
 import com.example.counselapp.model.User
+import com.squareup.picasso.Picasso
 
 class SearchExpViewHolder(val context: Context, parent: ViewGroup?, val onClicFunc : ((Int)->Unit)?)
     : RecyclerView.ViewHolder(LayoutInflater.from(context).inflate(
@@ -38,7 +39,10 @@ class SearchExpViewHolder(val context: Context, parent: ViewGroup?, val onClicFu
             2->imgHeart.setImageResource(R.drawable.lv2)
             3->imgHeart.setImageResource(R.drawable.lv3)
         }
-
+        // 프로필 사진 로드
+        if(item.portrait!=null){
+            Picasso.get().load(item.portrait).into(imgProfile)
+        }
         itemView.setOnClickListener { onClicFunc?.invoke(position) }
     }
 }

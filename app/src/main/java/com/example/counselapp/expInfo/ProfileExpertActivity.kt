@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import com.bumptech.glide.Glide
 import com.example.counselapp.counselList.CounselManagingActivity
 import com.example.counselapp.MainBoardActivity
 import com.example.counselapp.myPage.MyPageExpActivity
@@ -22,6 +23,7 @@ import com.example.counselapp.retrofit.CounselAppService
 import com.example.counselapp.retrofit.RetrofitClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_checkpost.*
 import kotlinx.android.synthetic.main.activity_profile_expert.*
 import retrofit2.Call
@@ -75,6 +77,15 @@ class ProfileExpertActivity : BaseActivity_noMVP() {
             drawerL_profile_expert.openDrawer(GravityCompat.START)
         }
 
+        // 수정 버튼
+        btn_profile_expert_edit.setOnClickListener {
+            val intent = Intent(this, WriteExpertProfileActivity::class.java)
+            intent.putExtra("expertId", expertId)
+            intent.putExtra("isFirst", false)
+            startActivity(intent)
+            finish()
+        }
+
         //하단 네비게이션뷰 등록
         val bottomNavigation = findViewById<View>(R.id.bottom_nav_profile_expert) as BottomNavigationView
         bottomNavigation.setOnNavigationItemSelectedListener { item ->
@@ -116,12 +127,17 @@ class ProfileExpertActivity : BaseActivity_noMVP() {
                     text_profile_expert_major.text = expert.major
                     showToast("level: ${expert.level}",this@ProfileExpertActivity)
                     when(expert.level){
-                        1-> img_profile_expert_lv.setImageResource(R.drawable.lv1)
+                        1->img_profile_expert_lv.setImageResource(R.drawable.lv1)
                         2->img_profile_expert_lv.setImageResource(R.drawable.lv2)
                         3->img_profile_expert_lv.setImageResource(R.drawable.lv3)
                     }
+                    // 서버에서 받은 이미지 로드->Picasso
+                    if(expert.portrait!=null){
+//                        Picasso.get().load(expert.portrait).into(img_profile_expert)
+                        Glide.with(this@ProfileExpertActivity).load(expert.portrait).into(img_profile_expert_lv)
+                    }
                     Log.d(TAG,"onResponse: 성공")
-                    //view.showToast(response.body().toString())
+
                 }
             }
         })

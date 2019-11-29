@@ -14,6 +14,7 @@ data class Post (
     @SerializedName("date_lastChanged") val date_lastChanged: Date,
     @SerializedName("hit") val hit: Int,
     @SerializedName("like") val like: Int,
-    @SerializedName("comments") val comments: Int
+    @SerializedName("comments") val comments: Int,
+    @SerializedName("image") val image: String? // 이미지
     )
 

@@ -40,12 +40,20 @@ interface CounselAppService {
                     @Field("title") title: String,
                   @Field("content") content: String): Call<String>
 
+//    @POST("/posts")
+//    @Multipart
+//    fun writePost(@Part("commenter") commenter: String,
+//                  @Part("title") title: String,
+//                  @Part("content") content: String,
+//                  @Part("portrait") portrait: String?): Call<String>
+
     // 기존 게시물 수정
     @PUT("/posts/{id}")
     @FormUrlEncoded
     fun updatePost(@Path("id") id: String,
                    @Field("title") title: String,
                    @Field("content") content: String): Call<String>
+
 
     // 게시물 삭제
     @DELETE("/posts/{id}")
@@ -65,7 +73,7 @@ interface CounselAppService {
     @GET("/users/{id}/expert")
     fun getExpert(@Path("id") id : String): Call<Expert>
 
-    // 상담사 정보 입력: 프로필 사진 업로드 넣기(multipart)
+    // 상담사 정보 입력(수정): 프로필 사진 업로드 넣기(multipart)
     @PUT("/users/{uid}/expert")
     @FormUrlEncoded
     fun updateExpert(@Path("uid") uid: String,
@@ -75,5 +83,6 @@ interface CounselAppService {
                      @Field("education") education: String?,
                        @Field("career") career: String?,
                        @Field("certificate") certificate: String?,
-                     @Field("major") major: String?): Call<String>
+                     @Field("major") major: String?,
+                     @Field("portrait") portrait: String?): Call<String>
 }

@@ -41,7 +41,6 @@
             </LinearLayout>
 
         </androidx.appcompat.widget.Toolbar>
-        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/return_icon"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
                                                            android:layout_height="wrap_content" android:layout_margin="8dp">
@@ -69,6 +68,7 @@
                       app:layout_constraintEnd_toEndOf="parent"
                       app:layout_constraintTop_toBottomOf="@+id/text_profile_expert_name"
                       app:layout_constraintHorizontal_bias="0.5"/>
+
 
             <ImageView
                     android:id="@+id/img_profile_expert_lv"
@@ -178,6 +178,9 @@
             </LinearLayout>
         </ScrollView>
 
+        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:id="@+id/btn_profile_expert_edit" android:text="수정"/>
+
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_nav_profile_expert"
@@ -189,6 +192,8 @@
                 app:itemTextColor="@android:color/background_light">
 
         </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
 
 
 

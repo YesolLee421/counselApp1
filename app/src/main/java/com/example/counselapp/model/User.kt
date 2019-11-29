@@ -9,7 +9,5 @@ data class User (
     val pw : String,
     val type : Int,
     val name : String,
-    val createdAt: Date,
-    val description : String?,
-    val belongTo :String?
+    val createdAt: Date
 )

@@ -31,7 +31,7 @@
             <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:src="@drawable/homer1" android:id="@+id/img_profile_expert"/>
+                    android:src="@drawable/homer1" android:id="@+id/img_writeExpert_portrait"/>
             <Button android:id="@+id/btn_writeExpert_selectImg" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="프로필 사진 선택"/>
             <TableLayout android:padding="8dp" android:layout_width="match_parent" android:layout_height="wrap_content">
                 <TableRow>
