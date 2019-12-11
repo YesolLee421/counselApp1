@@ -62,22 +62,21 @@ interface CounselAppService {
     //-----------------------------------------------------------------
     // 회원 정보 관련
     // 모든 상담사 목록 보기
-    @GET("/users/experts")
+    @GET("/users/allexperts")
     fun getAllExperts(): Call<List<Expert>>
 
     // 개별 회원 정보 보기
-    @GET("/users/{id}")
-    fun getUser(@Path("id") id : String): Call<User>
+    @GET("/users")
+    fun getUser(): Call<User>
 
     // 상담사 정보 보기
-    @GET("/users/{id}/expert")
-    fun getExpert(@Path("id") id : String): Call<Expert>
+    @GET("/users/expert/{id}")
+    fun getExpert(@Path("id") expertid: String): Call<Expert>
 
     // 상담사 정보 입력(수정): 프로필 사진 업로드 넣기(multipart)
-    @PUT("/users/{uid}/expert")
+    @PUT("/users/expert/update")
     @FormUrlEncoded
-    fun updateExpert(@Path("uid") uid: String,
-                       @Field("name_formal") name_formal: String,
+    fun updateExpert(@Field("name_formal") name_formal: String,
                      @Field("about") about: String?,
                      @Field("belongTo") belongTo: String?,
                      @Field("education") education: String?,

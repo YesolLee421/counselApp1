@@ -10,7 +10,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainboardPresenter :MainboardContract.Presenter{
-    var TAG = "LoginPresenter"
+    var TAG = "MainboardPresenter"
     override lateinit var view: MainboardContract.View
     override lateinit var presenterService: CounselAppService
 

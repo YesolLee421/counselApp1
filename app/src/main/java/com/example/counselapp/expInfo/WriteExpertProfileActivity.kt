@@ -169,7 +169,7 @@ class WriteExpertProfileActivity : BaseActivity_noMVP() {
             val major = et_writeExpert_major.text.toString()
             // 이 전에 사진 클릭해서 portrait 변수에 파일명 등 넣어야 함
             val portrait: String? = null
-            val call = service.updateExpert(expertId,name_formal, about,belongTo,education,career,certificate, major, portrait)
+            val call = service.updateExpert(name_formal, about,belongTo,education,career,certificate, major, portrait)
 
             if(name_formal!=""){
                 call.enqueue(object : Callback<String>{
