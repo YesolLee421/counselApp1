@@ -1,39 +1,45 @@
 package com.example.counselapp.expInfo
 
-import android.Manifest
 import android.annotation.TargetApi
 import android.app.Activity
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
 import com.example.counselapp.LogInActivity
 import com.example.counselapp.R
 import com.example.counselapp.base.BaseActivity_noMVP
 import com.example.counselapp.model.Expert
 import com.example.counselapp.myPage.MyPageExpActivity
-import com.example.counselapp.retrofit.CounselAppService
-import com.example.counselapp.retrofit.RetrofitClient
+import com.example.counselapp.Network.CounselAppService
+import com.example.counselapp.Network.RetrofitClient
+import com.example.counselapp.Network.RetrofitClient2
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_profile_expert.*
 import kotlinx.android.synthetic.main.activity_write_expert_profile.*
+import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import java.io.File
 
 class WriteExpertProfileActivity : BaseActivity_noMVP() {
 
     var TAG = "WriteExpertProfileActivity"
-    var portrait_uri: Uri? = null
+    var portrait_str: String = "http://10.0.2.2:3000/"
+    var portrait_uri :Uri? = null
 
     // retrofitClient, service 객체 생성
-    val retrofitClient: Retrofit = RetrofitClient.instance
+    var mContext: Context = this
+    val retrofitClient: OkHttpClient = RetrofitClient2.getClient(mContext, "addCookies")
     lateinit var service: CounselAppService
     lateinit var expert: Expert
     lateinit var expertId: String
@@ -86,8 +92,8 @@ class WriteExpertProfileActivity : BaseActivity_noMVP() {
         builder.setTitle("알림")
         builder.setMessage(msg)
         builder.setCancelable(false)
-        builder.setPositiveButton("예") { dialog, id -> requestPermissions(PERMISSIONS, PERMISSIONS_REQUEST_CODE) }
-        builder.setNegativeButton("아니오") { arg0, arg1 -> finish() }
+        builder.setPositiveButton("예") { _, _ -> requestPermissions(PERMISSIONS, PERMISSIONS_REQUEST_CODE) }
+        builder.setNegativeButton("아니오") { _, _ -> finish() }
         builder.create().show()
     }
 
@@ -97,7 +103,7 @@ class WriteExpertProfileActivity : BaseActivity_noMVP() {
         pictureDialog.setTitle("Select Action")
         val pictureDialogItems = arrayOf("갤러리에서 사진 가져오기", "카메라로 사진 촬영")
         pictureDialog.setItems(pictureDialogItems
-        ) { dialog, which ->
+        ) { _, which ->
             when (which) {
                 0 -> choosePhotoFromGallary()
                 1 -> takePhotoFromCamera()
@@ -114,6 +120,7 @@ class WriteExpertProfileActivity : BaseActivity_noMVP() {
 
     private fun takePhotoFromCamera() {
         val portrait = ContentValues() // 찍은 사진의 uri 저장
+
         portrait_uri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, portrait)
         
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -141,7 +148,7 @@ class WriteExpertProfileActivity : BaseActivity_noMVP() {
         isFirst = intent.getBooleanExtra("isFirst",false)
 
         // 서비스 시작
-        service = retrofitClient.create(CounselAppService::class.java)
+        service = RetrofitClient2.serviceAPI(retrofitClient)
 
         // 사진 선택 버튼 클릭
         btn_writeExpert_selectImg.setOnClickListener {
@@ -168,7 +175,7 @@ class WriteExpertProfileActivity : BaseActivity_noMVP() {
             val education = et_writeExpert_education.text.toString()
             val major = et_writeExpert_major.text.toString()
             // 이 전에 사진 클릭해서 portrait 변수에 파일명 등 넣어야 함
-            val portrait: String? = null
+            val portrait: File? = null
             val call = service.updateExpert(name_formal, about,belongTo,education,career,certificate, major, portrait)
 
             if(name_formal!=""){
@@ -224,7 +231,8 @@ class WriteExpertProfileActivity : BaseActivity_noMVP() {
                     et_writeExpert_major.setText(expert.major)
                     // 프로필 사진 넣어주기
                     if(expert.portrait!=null){
-                        Picasso.get().load(expert.portrait).into(img_writeExpert_portrait)
+                        portrait_str += expert.portrait
+                        Glide.with(this@WriteExpertProfileActivity).load(portrait_str).into(img_profile_expert_lv)
                     }
                 }
             }

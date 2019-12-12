@@ -1,5 +1,6 @@
 package com.example.counselapp
 
+import android.content.Context
 import android.content.Intent
 
 import android.os.Bundle
@@ -19,8 +20,8 @@ import com.example.counselapp.presenter.MainboardPresenter
 import com.example.counselapp.R.layout.activity_mainboard
 import com.example.counselapp.adapter.MainAdapter
 import com.example.counselapp.post.CheckPostActivity
-import com.example.counselapp.retrofit.CounselAppService
-import com.example.counselapp.retrofit.RetrofitClient
+import com.example.counselapp.Network.CounselAppService
+import com.example.counselapp.Network.RetrofitClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
@@ -28,9 +29,16 @@ import kotlinx.android.synthetic.main.activity_mainboard.*
 import retrofit2.Retrofit
 
 class MainBoardActivity : BaseActivity() , MainboardContract.View{
-    override fun moveTo(_id: String) {
-        val intent = Intent(this, CheckPostActivity::class.java)
-        intent.putExtra("postId",_id)
+
+    override fun moveTo(_id: String?, type: String) {
+        var intent:Intent? = null
+
+        if(type.equals("logout")){
+            intent = Intent(this, LogInActivity::class.java)
+        } else{
+            intent = Intent(this, CheckPostActivity::class.java)
+            intent.putExtra("postId",_id)
+        }
         startActivity(intent)
     }
 
@@ -45,6 +53,7 @@ class MainBoardActivity : BaseActivity() , MainboardContract.View{
     }
     private lateinit var presenter: MainboardPresenter
     private lateinit var adapter: MainAdapter
+    var mContext: Context = this
 
     // 서비스 선언
     lateinit var service: CounselAppService
@@ -62,6 +71,7 @@ class MainBoardActivity : BaseActivity() , MainboardContract.View{
             presenterService = service
             adapterModel = adapter
             adapterView = adapter
+            context = mContext
         }
     }
 
@@ -83,17 +93,17 @@ class MainBoardActivity : BaseActivity() , MainboardContract.View{
         val drawerNav = findViewById<View>(R.id.navigation_mainB) as NavigationView
         drawerNav.setNavigationItemSelectedListener { item ->
             when(item.itemId){
-                R.id.menu_main_nav_myPage->{
+                menu_main_nav_myPage->{
                     val intentMyPage = Intent(this, MyPageExpActivity::class.java)
                     startActivity(intentMyPage)
                 }
-                R.id.menu_main_nav_counselList->{
+                menu_main_nav_counselList->{
                     val intentCounselList = Intent(this, CounselManagingActivity::class.java)
                     startActivity(intentCounselList)
                 }
-                R.id.menu_main_nav_bookmark-> Toast.makeText(this,"즐겨찾기 클릭",Toast.LENGTH_SHORT).show()
-                R.id.menu_main_nav_logOut-> Toast.makeText(this,"로그아웃 클릭",Toast.LENGTH_SHORT).show()
-                R.id.menu_main_nav_setting-> Toast.makeText(this,"설정 클릭",Toast.LENGTH_SHORT).show()
+                menu_main_nav_bookmark-> Toast.makeText(this,"즐겨찾기 클릭",Toast.LENGTH_SHORT).show()
+                menu_main_nav_logOut-> presenter.doLogout()
+                menu_main_nav_setting-> Toast.makeText(this,"설정 클릭",Toast.LENGTH_SHORT).show()
             }
             true
         }

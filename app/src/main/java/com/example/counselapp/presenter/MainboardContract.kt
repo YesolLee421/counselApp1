@@ -1,15 +1,14 @@
 package com.example.counselapp.presenter
 
 import android.content.Context
-import com.example.counselapp.model.PostList
 import com.example.counselapp.adapter.MainAdapterContract
 import com.example.counselapp.model.Post
-import com.example.counselapp.retrofit.CounselAppService
+import com.example.counselapp.Network.CounselAppService
 
 interface MainboardContract {
     interface View {
         fun showToast(message: String)
-        fun moveTo(_id: String)
+        fun moveTo(_id: String?, type: String)
     }
 
     interface Presenter{
@@ -22,6 +21,7 @@ interface MainboardContract {
         var adapterView: MainAdapterContract.View?
 
         fun loadItems(context: Context, isClear: Boolean)
+        fun doLogout()
 
     }
 }

@@ -1,5 +1,6 @@
 package com.example.counselapp.post
 
+import android.content.Context
 import android.content.Intent
 
 import android.os.Bundle
@@ -8,7 +9,6 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.view.GravityCompat
 import com.example.counselapp.counselList.CounselManagingActivity
@@ -18,11 +18,13 @@ import com.example.counselapp.R
 import com.example.counselapp.SearchExpertActivity
 import com.example.counselapp.base.BaseActivity_noMVP
 import com.example.counselapp.model.Post
-import com.example.counselapp.retrofit.CounselAppService
-import com.example.counselapp.retrofit.RetrofitClient
+import com.example.counselapp.Network.CounselAppService
+import com.example.counselapp.Network.RetrofitClient
+import com.example.counselapp.Network.RetrofitClient2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_checkpost.*
+import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,10 +35,12 @@ class CheckPostActivity : BaseActivity_noMVP() {
     var TAG = "CheckPostActivity"
 
     // retrofitClient, service 객체 생성
-    val retrofitClient: Retrofit = RetrofitClient.instance
+    val mContext : Context = this
+    val retrofitClient: OkHttpClient = RetrofitClient2.getClient(mContext,"addCookies")
     lateinit var service: CounselAppService
     lateinit var post: Post
     lateinit var _id: String
+
 
 
 
@@ -48,7 +52,7 @@ class CheckPostActivity : BaseActivity_noMVP() {
         getLog(TAG,_id)
 
         // 서비스 시작
-        service = retrofitClient.create(CounselAppService::class.java)
+        service = RetrofitClient2.serviceAPI(retrofitClient)
 
 
         // 수정 버튼 클릭
@@ -69,7 +73,7 @@ class CheckPostActivity : BaseActivity_noMVP() {
             val builder = AlertDialog.Builder(ContextThemeWrapper(this, R.style.Theme_AppCompat_Light_Dialog))
             builder.setMessage("정말로 삭제하시겠습니까?")
 
-            builder.setPositiveButton("확인") {dialog, id ->
+            builder.setPositiveButton("확인") { _, _ ->
                 val call = service.deletePost(_id)
                 call.enqueue(object : Callback<String>{
                     override fun onFailure(call: Call<String>, t: Throwable) {
@@ -87,7 +91,7 @@ class CheckPostActivity : BaseActivity_noMVP() {
                     }
                 })
             }
-            builder.setNegativeButton("취소") {dialog, id ->
+            builder.setNegativeButton("취소") { dialog, _ ->
                 dialog.dismiss()
             }
             builder.show()

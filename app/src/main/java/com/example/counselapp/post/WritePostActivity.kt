@@ -1,53 +1,54 @@
 package com.example.counselapp.post
 
+import android.content.Context
 import android.content.Intent
 
 import android.os.Bundle
-import android.text.Editable
 import android.util.Log
 
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import com.example.counselapp.MainBoardActivity
 import com.example.counselapp.R
 import com.example.counselapp.base.BaseActivity_noMVP
 import com.example.counselapp.model.Post
-import com.example.counselapp.retrofit.CounselAppService
-import com.example.counselapp.retrofit.RetrofitClient
+import com.example.counselapp.Network.CounselAppService
+import com.example.counselapp.Network.RetrofitClient
+import com.example.counselapp.Network.RetrofitClient2
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_mainboard.*
 import kotlinx.android.synthetic.main.activity_write_post.*
 import kotlinx.android.synthetic.main.activity_write_post.ic_toolbar_menu
+import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import java.io.File
 
 class WritePostActivity : BaseActivity_noMVP() {
 
     var TAG = "WritePostActivity"
 
     // retrofitClient, service 객체 생성
-    val retrofitClient: Retrofit = RetrofitClient.instance
     lateinit var service: CounselAppService
     lateinit var post: Post
+    var context: Context = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_write_post)
 
         // 인텐트 있으면 (수정 시)
-        val _id: String? = intent.getStringExtra("postId")
-        val title: String? = intent.getStringExtra("title")
-        val content: String? = intent.getStringExtra("content");
+        val postId: String? = intent.getStringExtra("postId")
+        var title = intent.getStringExtra("title")
+        var content = intent.getStringExtra("content");
+        val picture: File? = null
 
-        et_writePost_title.setText(intent.getStringExtra("title"))
-        et_writePost_content.setText(intent.getStringExtra("content"))
+        et_writePost_title.setText(title)
+        et_writePost_content.setText(content)
 
         // 서비스 시작
-        service = retrofitClient.create(CounselAppService::class.java)
+        //service = retrofitClient.create(CounselAppService::class.java)
 
 
         //툴바- 메뉴 클릭 등록
@@ -64,13 +65,15 @@ class WritePostActivity : BaseActivity_noMVP() {
                 R.id.bottom_bar_writePost_gallery ->{
                     Toast.makeText(this,"앨범 열기", Toast.LENGTH_SHORT).show()
                 }
-                R.id.bottom_bar_writePost_save -> {
-                    val title = et_writePost_title.text.toString()
-                    val content = et_writePost_content.text.toString()
-                    val commenter = "Homer Simpson"
+                R.id.bottom_bar_writePost_save -> { // 저장 버튼 클릭
+                    title = et_writePost_title.text.toString()
+                    content = et_writePost_content.text.toString()
+                    val client : OkHttpClient = RetrofitClient2.getClient(context, "addCookies")
+                    service = RetrofitClient2.serviceAPI(client)
+
                     if(title!="" && content!=""){
-                        if(_id==null){ // _id ==null 이면 새로 생성, 아니면 수정
-                            val call = service.writePost(commenter, title, content)
+                        if(postId==null){ // _id ==null 이면 새로 생성, 아니면 수정
+                            val call = service.writePost(title!!, content!!, picture)
                             call.enqueue(object : Callback<String>{
                                 override fun onFailure(call: Call<String>, t: Throwable) {
                                     Log.d(TAG,"onFailure: ${t.message}")
@@ -78,18 +81,19 @@ class WritePostActivity : BaseActivity_noMVP() {
                                 }
                                 override fun onResponse(call: Call<String>, response: Response<String>) {
                                     if(response.code()==201){
-                                        Log.d(TAG,"onResponse: 성공")
+                                        Log.d(TAG,"onResponse: 성공 ${response.body()}")
                                         showToast(response.body().toString(), this@WritePostActivity)
                                         val intent = Intent(this@WritePostActivity, CheckPostActivity::class.java)
                                         intent.putExtra("postId",response.body().toString())
                                         startActivity(intent)
                                         finish()
                                     }
+                                    Log.d(TAG,"onResponse: ${response.raw()}")
                                 }
                             })
                         }else{
                             // 게시물 수정
-                            val call = service.updatePost(_id!!,title,content)
+                            val call = service.updatePost(postId, title!!, content!!,picture)
                             call.enqueue(object : Callback<String>{
                                 override fun onFailure(call: Call<String>, t: Throwable) {
                                     Log.d(TAG,"onFailure: ${t.message}")
@@ -103,7 +107,10 @@ class WritePostActivity : BaseActivity_noMVP() {
                                         intent.putExtra("postId",response.body().toString())
                                         startActivity(intent)
                                         finish()
+                                    }else{
+                                        Log.d(TAG,"onResponse: 실패 = ${response.body()}")
                                     }
+                                    Log.d(TAG,"onResponse: ${response.raw()}")
                                 }
                             })
                         }

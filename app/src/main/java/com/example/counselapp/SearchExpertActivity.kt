@@ -14,22 +14,28 @@ import com.example.counselapp.adapter.SearchExpertAdapter
 import com.example.counselapp.base.BaseActivity
 import com.example.counselapp.counselList.CounselManagingActivity
 import com.example.counselapp.expInfo.ProfileExpertActivity
-import com.example.counselapp.model.User
 import com.example.counselapp.myPage.MyPageExpActivity
 import com.example.counselapp.presenter.MainboardContract
 import com.example.counselapp.presenter.SearchExpPresenter
-import com.example.counselapp.retrofit.CounselAppService
-import com.example.counselapp.retrofit.RetrofitClient
+import com.example.counselapp.Network.CounselAppService
+import com.example.counselapp.Network.RetrofitClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_search_expert.*
 import retrofit2.Retrofit
 
 class SearchExpertActivity : BaseActivity(), MainboardContract.View {
-    override fun moveTo(_id: String) {
-        val intentExp = Intent(this,ProfileExpertActivity::class.java)
-        intentExp.putExtra("expertId", _id)
-        startActivity(intentExp)
+
+    override fun moveTo(_id: String?, type: String) {
+        var intent:Intent? = null
+
+        if(type.equals("logout")){
+            intent = Intent(this, LogInActivity::class.java)
+        } else{
+            intent = Intent(this,ProfileExpertActivity::class.java)
+            intent.putExtra("expertId", _id)
+        }
+        startActivity(intent)
     }
 
     private val recyclerView by lazy { findViewById<RecyclerView>(R.id.rc_searchExp) }

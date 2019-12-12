@@ -3,8 +3,7 @@ package com.example.counselapp.presenter
 import com.example.counselapp.base.BasePresenter
 import com.example.counselapp.base.BaseView
 import com.example.counselapp.model.User
-import com.example.counselapp.model.UserList
-import com.example.counselapp.retrofit.CounselAppService
+import com.example.counselapp.Network.CounselAppService
 import io.reactivex.disposables.CompositeDisposable
 
 interface LoginContract {

@@ -5,10 +5,7 @@ import android.util.Log
 import com.example.counselapp.adapter.MainAdapterContract
 import com.example.counselapp.adapter.SearchExpertAdapterContract
 import com.example.counselapp.model.Expert
-import com.example.counselapp.model.Post
-import com.example.counselapp.model.User
-import com.example.counselapp.model.UserList
-import com.example.counselapp.retrofit.CounselAppService
+import com.example.counselapp.Network.CounselAppService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,7 +27,7 @@ class SearchExpPresenter: SearchExpContract.Presenter {
         adapterModel.getItem(position).let {
             view.showToast(it.name_formal)
             Log.d(TAG, it.name_formal)
-            view.moveTo(it._id)
+            view.moveTo(it._id, "item")
         }
     }
 

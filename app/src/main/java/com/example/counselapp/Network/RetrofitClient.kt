@@ -1,4 +1,4 @@
-package com.example.counselapp.retrofit
+package com.example.counselapp.Network
 
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
