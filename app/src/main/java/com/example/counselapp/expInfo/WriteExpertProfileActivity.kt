@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
@@ -21,9 +22,11 @@ import com.example.counselapp.myPage.MyPageExpActivity
 import com.example.counselapp.Network.CounselAppService
 import com.example.counselapp.Network.RetrofitClient
 import com.example.counselapp.Network.RetrofitClient2
+import com.example.counselapp.Utils
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_profile_expert.*
 import kotlinx.android.synthetic.main.activity_write_expert_profile.*
+import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,7 +34,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import java.io.File
 
-class WriteExpertProfileActivity : BaseActivity_noMVP() {
+class WriteExpertProfileActivity : BaseActivity_noMVP(), Utils {
 
     var TAG = "WriteExpertProfileActivity"
     var portrait_str: String = "http://10.0.2.2:3000/"
@@ -133,9 +136,16 @@ class WriteExpertProfileActivity : BaseActivity_noMVP() {
         // (카메라, 앨범) 액티비티 성공
         if(resultCode==Activity.RESULT_OK){
             when(requestCode){
-                IMAGE_CAPTURE_CODE->img_writeExpert_portrait.setImageURI(portrait_uri) // 사진도 data로 바꿔봤는데 안 됨
-                GALLERY_CODE->img_writeExpert_portrait.setImageURI(data!!.data) // 갤러리 선택한 것은 data로 uri바로 가져올 수 있음
+                //IMAGE_CAPTURE_CODE->img_writeExpert_portrait.setImageURI(portrait_uri) // 사진도 data로 바꿔봤는데 안 됨
+                GALLERY_CODE->portrait_uri = data!!.data
             }
+            val path = getPathFromUri(this, portrait_uri)
+            val file = createFile(path)
+
+            img_writeExpert_portrait.setImageURI(portrait_uri) // 갤러리 선택한 것은 data로 uri바로 가져올 수 있음
+            Log.d(TAG, "portrait_uri=${portrait_uri}")
+            Log.d(TAG, "path=${path}")
+            Log.d(TAG, "isfile=${(file?.isFile)}")
         }
 
     }
@@ -175,8 +185,16 @@ class WriteExpertProfileActivity : BaseActivity_noMVP() {
             val education = et_writeExpert_education.text.toString()
             val major = et_writeExpert_major.text.toString()
             // 이 전에 사진 클릭해서 portrait 변수에 파일명 등 넣어야 함
-            val portrait: File? = null
-            val call = service.updateExpert(name_formal, about,belongTo,education,career,certificate, major, portrait)
+
+
+            val portrait: File? = createFile(getPathFromUri(this, portrait_uri))
+            var body: MultipartBody.Part? = null
+            if(portrait!=null){
+                body = uploadFiles(portrait)
+                Log.e(TAG, "파일 생성 = ${portrait.isFile}")
+            }
+
+            val call = service.updateExpert(name_formal, about,belongTo,education,career,certificate, major, body)
 
             if(name_formal!=""){
                 call.enqueue(object : Callback<String>{

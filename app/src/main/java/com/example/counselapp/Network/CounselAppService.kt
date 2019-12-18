@@ -3,6 +3,7 @@ package com.example.counselapp.Network
 import com.example.counselapp.model.Expert
 import com.example.counselapp.model.Post
 import com.example.counselapp.model.User
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
 import java.io.File
@@ -102,5 +103,5 @@ interface CounselAppService {
                      @Part("career") career: String?,
                      @Part("certificate") certificate: String?,
                      @Part("major") major: String?,
-                     @Part("portrait") portrait: File?): Call<String>
+                     @Part portrait: MultipartBody.Part?): Call<String>
 }
